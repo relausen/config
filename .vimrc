@@ -126,7 +126,8 @@ Plugin 'gmarik/Vundle.vim'
 " Languages
 " Syntax checker
 " Plugin 'scrooloose/syntastic'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Shougo/neocomplete.vim'
 " golang
 Plugin 'fatih/vim-go'
 " Python
@@ -253,6 +254,14 @@ set errorformat^=%-G%f:%l:\ warning:%m
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:ycm_global_ycm_extra_conf = '~/vim/ycm_extra_conf.py'
 autocmd FileType cpp setlocal commentstring=//\ %s
+" NeoComplete
+" <TAB>: completion for NeoComplete
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+let g:neocomplete#enable_auto_select=1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+set cino=N-s
 
 " Doxygen setup
 let g:DoxygenToolkit_briefTag_pre=""
