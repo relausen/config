@@ -1,11 +1,14 @@
 [user]
 	name = Rune Enggaard Lausen
-	email = myemail@somewhere.com
+	email = rel@ordbogen.com
 [color]
 	ui = true
 [core]
 	editor = vim
-	excludesfile = /Users/rel/.gitignore_global
+	autocrlf = true
+	excludesfile = /c/Users/rel/gitignore-global
+[credential]
+	helper = !\"C:/Program Files (x86)/GitExtensions/GitCredentialWinStore/git-credential-winstore.exe\"
 [alias]
 	ci = commit
 	co = checkout
@@ -15,8 +18,12 @@
 	undomerge = merge --abort
 	ctags = !.git/hooks/ctags
 [merge]
-	tool = opendiff
+	tool = kdiff3
+[mergetool "kdiff3"]
+	path = C:/Program Files (x86)/KDiff3/kdiff3.exe
+[diff]
+	guitool = kdiff3
 [push]
 	default = simple
 [init]
-	templatedir = ~/.git_template
+	templatedir = c:/Users/rel/git-templates
