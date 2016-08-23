@@ -66,7 +66,7 @@ esac
 
 # use fancy git prompt
 export GIT_PROMPT_ONLY_IN_REPO=1
-# . "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
+. "$HOME/bash-git-prompt/gitprompt.sh"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -110,7 +110,7 @@ if [ -f "$HOME/.workenv" ]; then
 fi
 
 ######## REL ########
-export EDITOR=vi
+export EDITOR=vim
 export GZIP="-9"
 export FIGNORE='~:.o' 
 export LESS="-MiQcRx4"
