@@ -1,0 +1,22 @@
+[user]
+	name = Rune Enggaard Lausen
+	email = myemail@somewhere.com
+[color]
+	ui = true
+[core]
+	editor = vim
+	excludesfile = /Users/rel/.gitignore_global
+[alias]
+	ci = commit
+	co = checkout
+	distclean = "!f(){ git clean $1 && git submodule foreach --recursive git clean $1; };f"
+	subup = submodule update --init --recursive
+	stat = status -s
+	undomerge = merge --abort
+	ctags = !.git/hooks/ctags
+[merge]
+	tool = opendiff
+[push]
+	default = simple
+[init]
+	templatedir = ~/.git_template
