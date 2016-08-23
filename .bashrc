@@ -66,7 +66,7 @@ esac
 
 # use fancy git prompt
 export GIT_PROMPT_ONLY_IN_REPO=1
-. "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
+# . "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -101,9 +101,9 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
+# if [ -f $(brew --prefix)/etc/bash_completion ]; then
+#     . $(brew --prefix)/etc/bash_completion
+# fi
 
 if [ -f "$HOME/.workenv" ]; then
 	. "$HOME/.workenv"
@@ -115,7 +115,7 @@ export GZIP="-9"
 export FIGNORE='~:.o' 
 export LESS="-MiQcRx4"
 export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
-export BYOBU_PREFIX=$(brew --prefix)
+# export BYOBU_PREFIX=$(brew --prefix)
 IGNOREEOF=1
 AA=1
 #export SCRIPTS_ROOTDIR=/home/rel/devel/modern_translation/bin/scripts-20110304-0927
