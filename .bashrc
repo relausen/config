@@ -5,6 +5,16 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux'  ]]; then
+	platform='linux'
+elif [[ "$unamestr" == 'Darwin'  ]]; then
+	platform='mac'
+elif [[ "$unamestr" == *'_NT'*  ]]; then
+	platform='windows'
+fi
+
 export GMOCKDIR=$HOME/Development/ordbogen/googletest
 export GOPATH=$HOME/Development/go
 
@@ -66,7 +76,11 @@ esac
 
 # use fancy git prompt
 export GIT_PROMPT_ONLY_IN_REPO=1
-. "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
+if [[ "$platform" == 'mac' ]]; then
+	. "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
+elif [[ "$platform" == 'windows' ]]; then
+	. "$HOME/bash-git-prompt/gitprompt.sh"
+fi
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -101,8 +115,10 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+if [[ "$platform" == 'mac' ]]; then
+	if [ -f $(brew --prefix)/etc/bash_completion ]; then
+		. $(brew --prefix)/etc/bash_completion
+	fi
 fi
 
 if [ -f "$HOME/.workenv" ]; then
@@ -115,7 +131,9 @@ export GZIP="-9"
 export FIGNORE='~:.o' 
 export LESS="-MiQcRx4"
 export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
-export BYOBU_PREFIX=$(brew --prefix)
+if [[ "$platform" == 'mac' ]]; then
+	export BYOBU_PREFIX=$(brew --prefix)
+fi
 IGNOREEOF=1
 AA=1
 #export SCRIPTS_ROOTDIR=/home/rel/devel/modern_translation/bin/scripts-20110304-0927
