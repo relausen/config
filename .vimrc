@@ -232,6 +232,7 @@ nnoremap <silent> <leader>n :nohlsearch<CR>
 
 " Show line numbers
 set number
+set relativenumber
 
 " Text width
 " set textwidth=95
