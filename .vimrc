@@ -243,6 +243,8 @@ set relativenumber
 " Sensible tabs
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4
+set expandtab
 
 " C++ setup
 set errorformat^=%-G%f:%l:\ warning:%m
