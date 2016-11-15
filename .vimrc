@@ -27,6 +27,10 @@ set visualbell
 nmap ø [
 nmap å ]
 
+" Use smart casing for searches
+set ignorecase
+set smartcase
+
 " Disable arrow keys
 noremap <Up> <NOP>
 noremap <Down> <NOP>
