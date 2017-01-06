@@ -252,14 +252,21 @@ set expandtab
 
 " C++ setup
 set errorformat^=%-G%f:%l:\ warning:%m
+autocmd FileType cpp setlocal commentstring=//\ %s
 " augroup make
 "   au!
 "   autocmd QuickFixCmdPost [^l]* nested cwindow
 "   autocmd QuickFixCmdPost    l* nested lwindow
 " augroup END
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+" YouCompleteMe setup
 let g:ycm_global_ycm_extra_conf = '~/vim/ycm_extra_conf.py'
-autocmd FileType cpp setlocal commentstring=//\ %s
+nnoremap <leader>yt   :YcmCompleter GetType<CR>
+nnoremap <leader>yji  :YcmCompleter GoToInclude<CR>
+nnoremap <leader>yjde :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>yjdi :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>yd   :YcmCompleter GetDoc<CR>
+nnoremap <leader>yf   :YcmCompleter FixIt<CR>
 
 " Doxygen setup
 let g:DoxygenToolkit_briefTag_pre=""
