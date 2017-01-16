@@ -111,8 +111,7 @@ endif " has("autocmd")
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 endif
 
 " Vundle
@@ -167,6 +166,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'vim-scripts/argtextobj.vim.git'
 Plugin 'mileszs/ack.vim'
 Plugin 'keith/tmux.vim'
+Plugin 'SirVer/ultisnips'
 
 " -Themes
 Plugin 'morhetz/gruvbox'
@@ -196,6 +196,10 @@ set path=.,/usr/local/include,,**
 
 " Allow switching away from edited buffer
 set hidden
+
+" Split behaviour
+set splitbelow
+set splitright
 
 " Convenience keys for opening file in same dir as file in buffer
 " Mnemonics:
@@ -259,8 +263,10 @@ autocmd FileType cpp setlocal commentstring=//\ %s
 "   autocmd QuickFixCmdPost    l* nested lwindow
 " augroup END
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
 " YouCompleteMe setup
 let g:ycm_global_ycm_extra_conf = '~/vim/ycm_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_completion = 1
 nnoremap <leader>yt   :YcmCompleter GetType<CR>
 nnoremap <leader>yji  :YcmCompleter GoToInclude<CR>
 nnoremap <leader>yjde :YcmCompleter GoToDeclaration<CR>
@@ -276,13 +282,21 @@ map <leader>d :Dox<CR>
 " Write before commands
 set autowrite
 
+" Set up highlight of current line
+augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup END
+hi CursorLine cterm=NONE ctermbg=239
+
 " Recognize QMake .pro and .pri files
 augroup qmake
   au!
   autocmd BufNewFile,BufRead *.pro set filetype=qmake
   autocmd BufNewFile,BufRead *.pri set filetype=qmake
 augroup END
-  
+
 " Recognize SWIG files
 augroup swig
   au!
