@@ -78,7 +78,7 @@ esac
 export GIT_PROMPT_ONLY_IN_REPO=1
 if [[ "$platform" == 'mac' ]]; then
 	. "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
-elif [[ "$platform" == 'windows' ]]; then
+elif [[ -f "$HOME/bash-git-prompt/gitprompt.sh" ]]; then
 	. "$HOME/bash-git-prompt/gitprompt.sh"
 fi
 
@@ -130,7 +130,11 @@ export EDITOR=vi
 export GZIP="-9"
 export FIGNORE='~:.o' 
 export LESS="-MiQcRx4"
-export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
+if [ -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then
+    export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+elif  [ -f /usr/local/bin/src-hilite-lesspipe.sh ]
+    export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
+fi
 if [[ "$platform" == 'mac' ]]; then
 	export BYOBU_PREFIX=$(brew --prefix)
 fi
