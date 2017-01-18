@@ -160,7 +160,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
 Plugin 'artoj/qmake-syntax-vim'
-Plugin 'jiangmiao/auto-pairs'
+" Plugin 'jiangmiao/auto-pairs'
+Plugin 'Raimondi/delimitMate'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'godlygeek/tabular'
 Plugin 'vim-scripts/argtextobj.vim.git'
@@ -253,6 +254,14 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+
+" delimitMate setup
+let delimitMate_expand_cr = 1
+
+" UltiSnips setup
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsSnippetsDirectories=["~/.vim/UltiSnips", "UltiSnips"]
+let g:UltiSnipsEditSplit="vertical"
 
 " C++ setup
 set errorformat^=%-G%f:%l:\ warning:%m
