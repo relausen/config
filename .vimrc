@@ -40,16 +40,13 @@ noremap <Right> <NOP>
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file (restore to previous version)
-  set undofile		" keep an undo file (undo changes after closing)
-endif
+set backup		" keep a backup file (restore to previous version)
+set undofile		" keep an undo file (undo changes after closing)
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
+set directory=~/.vim/tmp/swap/
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -261,7 +258,7 @@ let delimitMate_expand_cr = 1
 " UltiSnips setup
 nnoremap <leader>ue :UltiSnipsEdit<CR>
 let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsSnippetsDirectories=["~/.vim/UltiSnips", "UltiSnips"]
+let g:UltiSnipsSnippetsDirectories=["~/UltiSnips", "~/.vim/UltiSnips", "UltiSnips"]
 let g:UltiSnipsEditSplit="vertical"
 
 " C++ setup
