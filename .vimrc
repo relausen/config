@@ -47,6 +47,8 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set directory=~/.vim/tmp/swap/
+set backupdir=~/.vim/tmp/backup/
+set undodir=~/.vim/tmp/undo/
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
