@@ -260,7 +260,7 @@ let delimitMate_expand_cr = 1
 " UltiSnips setup
 nnoremap <leader>ue :UltiSnipsEdit<CR>
 let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsSnippetsDirectories=["~/UltiSnips", "~/.vim/UltiSnips", "UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["~/UltiSnips", "~/.vim/UltiSnips", "UltiSnips"]
 let g:UltiSnipsEditSplit="vertical"
 
 " C++ setup
