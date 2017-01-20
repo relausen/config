@@ -1,0 +1,90 @@
+extends c
+
+global !p
+def to_camel_case(snake_str):
+	components = snake_str.split('_')
+	# We capitalize the first letter of each component except the first one
+	# with the 'title' method and join them together.
+	return "".join(x.title() for x in components)
+
+def convert(name):
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
+    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
+endglobal
+
+snippet header
+#ifndef $1
+#define $1
+
+$0
+
+#endif
+endsnippet
+
+snippet cl
+#ifndef ${1:`!p snip.rv = snip.basename.upper() + "_H"`}
+#define $1
+
+class ${2:`!p snip.rv = to_camel_case(snip.basename)`}
+{
+public:
+	$2($3);
+
+	virtual ~$2();
+
+	$0
+
+private:
+};
+
+#endif
+endsnippet
+
+snippet uptr
+{
+std::unique_ptr<$1> $0;
+}
+endsnippet
+
+snippet muptr
+{
+std::make_unique<$1>($0);
+}
+endsnippet
+
+snippet sptr
+{
+std::shared_ptr<$1> $0;
+}
+endsnippet
+
+snippet msptr
+{
+std::make_shared<$1>($0);
+}
+endsnippet
+
+snippet mfun
+${1:void} ${2:`!p snip.rv = to_camel_case(snip.basename)`}::${3:memberFunction}($4)
+{
+	$0
+}
+endsnippet
+
+snippet utest
+U_TEST($1, $2)
+{
+	$0
+}
+endsnippet
+
+snippet utestf
+U_TEST_F($1, $2)
+{
+	$0
+}
+endsnippet
+
+snippet todo
+// TODO `date +%F` ${1:REL}: $0
+endsnippet
