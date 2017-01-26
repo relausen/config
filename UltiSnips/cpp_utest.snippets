@@ -1,17 +1,44 @@
-snippet utest
+snippet utest "U_TEST" b
 U_TEST($1, $2)
 {
 	$0
 }
 endsnippet
 
-snippet utestf
+snippet utestf "U_TEST_F" b
 U_TEST_F($1, $2)
 {
 	$0
 }
 endsnippet
 
-snippet et
+snippet et "EXPECT_THAT" b
 EXPECT_THAT($1, $2);
+endsnippet
+
+global !p
+def create_mock_method_placeholders(snip, const = False):
+	# retrieving singlee line from current string and treat it like tabstops
+	# count
+	placeholders_amount = int(snip.buffer[snip.line].strip())
+
+	# erase current line
+	snip.buffer[snip.line] = ''
+
+	# create anonymous snippet with expected content and number of tabstops
+	mock_base = 'MOCK_CONST_METHOD' if const else 'MOCK_METHOD'
+	anon_snippet_body = mock_base + str(placeholders_amount) + '(${1:methodName}, ${2:returnType} (' + ', '.join(['$' + str(i+3) for i in range(placeholders_amount)]) + '));$0'
+
+	# expand anonymous snippet
+	snip.expand_anon(anon_snippet_body)
+endglobal
+
+post_jump "create_mock_method_placeholders(snip, const = False)"
+snippet "mm(\d+)" "method mock template" br
+`!p snip.rv = match.group(1)`
+endsnippet
+
+post_jump "create_mock_method_placeholders(snip, const = True)"
+snippet "mcm(\d+)" "method mock template" br
+`!p snip.rv = match.group(1)`
 endsnippet
