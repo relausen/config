@@ -63,18 +63,8 @@ ${1:void} ${2:`!p snip.rv = to_camel_case(snip.basename)`}::${3:memberFunction}(
 }
 endsnippet
 
-snippet utest
-U_TEST($1, $2)
-{
-	$0
-}
-endsnippet
-
-snippet utestf
-U_TEST_F($1, $2)
-{
-	$0
-}
+snippet spy
+QSignalSpy $1Spy(&$2, &$2::$3);
 endsnippet
 
 snippet todo
