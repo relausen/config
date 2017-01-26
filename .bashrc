@@ -75,6 +75,7 @@ xterm*|rxvt*)
 esac
 
 # use fancy git prompt
+export GIT_PROMPT_ONLY_IN_REPO=0
 if [[ "$platform" == 'mac' ]]; then
 	. "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
 elif [[ -f "$HOME/bash-git-prompt/gitprompt.sh" ]]; then
