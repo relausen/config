@@ -79,7 +79,7 @@ if has("autocmd")
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+  " filetype plugin indent on
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
@@ -182,6 +182,8 @@ call vundle#end()            " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+  filetype plugin indent on
 
 " Let's use ag instead of ack, if present
 if executable('ag')
