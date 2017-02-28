@@ -22,6 +22,20 @@ $0
 endsnippet
 
 snippet cl
+class ${1:ClassName}
+{
+public:
+	$1($2);
+
+	virtual ~$1();
+
+	$0
+
+private:
+};
+endsnippet
+
+snippet clh
 #ifndef ${1:`!p snip.rv = snip.basename.upper() + "_H"`}
 #define $1
 
@@ -38,6 +52,14 @@ private:
 };
 
 #endif
+endsnippet
+
+snippet cout "std::cout with endl"
+std::cout << $1 << std::endl;
+endsnippet
+
+snippet wcout "std::cout with endl"
+std::wcout << $1 << std::endl;
 endsnippet
 
 snippet uptr "Declare a unique pointer"
