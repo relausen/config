@@ -1,0 +1,7 @@
+#! /bin/sh
+
+branch=`git symbolic-ref HEAD`
+if [ "$branch" = "refs/heads/master" ] || [ "$branch" = "refs/heads/develop" ]; then
+    echo "Direct commits to master and develop are not allowed"
+    exit 1
+fi

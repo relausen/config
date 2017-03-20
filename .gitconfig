@@ -5,7 +5,9 @@
 	ui = true
 [core]
 	editor = vim
-	excludesfile = /Users/rel/.gitignore_global
+	excludesfile = ~/.gitignore_global
+	; autocrlf = input
+	; filemode = false
 [alias]
 	ci = commit
 	co = checkout
@@ -19,4 +21,4 @@
 [push]
 	default = simple
 [init]
-	templatedir = ~/.git_template
+	templatedir = ~/.git_templates
