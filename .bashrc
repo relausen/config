@@ -125,6 +125,10 @@ if [ -f "$HOME/.workenv" ]; then
 	. "$HOME/.workenv"
 fi
 
+if [ -f "$HOME/.gruvbox_256palette.sh" ]; then
+	. "$HOME/.gruvbox_256palette.sh"
+fi
+
 ######## REL ########
 export EDITOR=vi
 export GZIP="-9"
