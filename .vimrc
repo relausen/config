@@ -157,7 +157,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-abolish'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'artoj/qmake-syntax-vim'
 " Plugin 'jiangmiao/auto-pairs'
 Plugin 'Raimondi/delimitMate'
@@ -253,8 +253,8 @@ set relativenumber
 " Sensible tabs
 set tabstop=4
 set shiftwidth=4
-set softtabstop=4
-set expandtab
+" set softtabstop=4
+set noexpandtab
 
 " delimitMate setup
 let delimitMate_expand_cr = 1
