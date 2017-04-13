@@ -23,6 +23,8 @@ set nocompatible
 " Stop the bloody beeping
 set visualbell
 
+set termguicolors
+
 " Easier access to [ and ] in normal mode on Danish keyboards
 nmap ø [
 nmap å ]
