@@ -34,10 +34,10 @@ set ignorecase
 set smartcase
 
 " Disable arrow keys
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+" noremap <Up> <NOP>
+" noremap <Down> <NOP>
+" noremap <Left> <NOP>
+" noremap <Right> <NOP>
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
