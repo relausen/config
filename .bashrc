@@ -15,7 +15,6 @@ elif [[ "$unamestr" == *'_NT'*  ]]; then
 	platform='windows'
 fi
 
-export GMOCKDIR=$HOME/Development/ordbogen/googletest
 export GOPATH=$HOME/Development/go
 
 export PATH=$HOME/bin:/opt/bin:$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin:$HOME/Development/kenlm/bin
@@ -103,11 +102,6 @@ if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
     #alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-#alias ll='ls -lh'
-#alias la='ls -A'
-#alias l='ls -CF'
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -126,9 +120,9 @@ if [ -f "$HOME/.workenv" ]; then
 fi
 
 ######## REL ########
-export EDITOR=vi
+export EDITOR=vim
 export GZIP="-9"
-export FIGNORE='~:.o' 
+export FIGNORE='~:.o'
 export LESS="-MiQcRx4"
 if [ -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then
     export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
@@ -139,9 +133,6 @@ if [[ "$platform" == 'mac' ]]; then
 	export BYOBU_PREFIX=$(brew --prefix)
 fi
 IGNOREEOF=1
-AA=1
-#export SCRIPTS_ROOTDIR=/home/rel/devel/modern_translation/bin/scripts-20110304-0927
-export SCRIPTS_ROOTDIR=/home/rel/modern_translation/bin/scripts-20110308-1252
 
 #### ALIASES
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -152,10 +143,6 @@ alias l='less'
 alias la='lla'
 alias ll='ls -lh'
 alias lla='ls -al'
-alias med='gnuclient'
-alias medw='gnuclientw'
-# alias mvfop='fop.sh -c c:/usr/packages/fop-0.20.5/conf/userconfig.xml -xsl d:/mikrov/development/transformations/devel_fo.xsl -xml \!:1 -pdf `basename \!:1 .xml`.pdf'
-# alias mvxep='xep.sh -xml \!:1 -xsl d:/mikrov/development/transformations/devel_fo.xsl -pdf `basename \!:1 .xml`.pdf'
 alias penv='printenv | sort'
 alias po='popd"'
 alias pd='pushd'
@@ -176,11 +163,11 @@ function hgrep {
 
 function phpgrep {
     rgrep -nie "$1" --exclude-dir=".svn" --include="*.php" . --color
-}    
+}
 
 function tplgrep {
     rgrep -nie "$1" --exclude-dir=".svn" --include="*.tpl" . --color
-}    
+}
 
 function lll {
     ll $* | l

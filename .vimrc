@@ -26,8 +26,8 @@ set visualbell
 set termguicolors
 
 " Easier access to [ and ] in normal mode on Danish keyboards
-nmap ø [
-nmap å ]
+nmap æ [
+nmap ø ]
 
 " Use smart casing for searches
 set ignorecase
@@ -54,6 +54,8 @@ set undodir=~/.vim/tmp/undo/
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
+let guioptions="egm"
+
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -63,9 +65,9 @@ map Q gq
 inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
-" if has('mouse')
-"   set mouse=a
-" endif
+if has('mouse')
+  set mouse=a
+endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -157,7 +159,7 @@ Plugin 'tpope/vim-ragtag'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-abolish'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'artoj/qmake-syntax-vim'
@@ -169,6 +171,8 @@ Plugin 'vim-scripts/argtextobj.vim.git'
 Plugin 'mileszs/ack.vim'
 Plugin 'keith/tmux.vim'
 Plugin 'SirVer/ultisnips'
+Plugin 'wesQ3/vim-windowswap'
+Plugin 'mkitt/tabline.vim'
 
 " -Themes
 Plugin 'morhetz/gruvbox'
@@ -191,6 +195,8 @@ call vundle#end()            " required
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+let g:ctrlp_working_path_mode=0
 
 " Disable Auto Pairs AutoPairsFastWrap to make letter 'å' work
 let g:AutoPairsShortcutFastWrap='<Nop>'
@@ -223,7 +229,8 @@ set background=dark
 colorscheme gruvbox
 
 " Setup airline
-" set guifont=Sauce\ Code\ Powerline\ Light
+" set guifont=Sauce\ Code\ Powerline\ Light:h13
+set guifont=Sauce\ Code\ Powerline:h13
 let g:airline_powerline_fonts = 1
 set laststatus=2
 let g:airline#extensions#branch#enabled = 1
@@ -326,11 +333,14 @@ nmap <C-Down> ]e
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
+let g:markdown_fenced_languages = ['cpp']
+
 " .vimrc editing
 " Open .vimrc in new tab
 nmap <leader>v :tabedit $MYVIMRC<CR>
 " Reload .vimrc after edit
 augroup myvimrc
   au!
-  au BufWritePost vimrc,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+  " au BufWritePost vimrc,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+  au BufWritePost vimrc,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') && filereadable(expand('$HOME/.gvimrc')) | so expand('$HOME/.gvimrc') | endif
 augroup END
