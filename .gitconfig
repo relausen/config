@@ -1,6 +1,6 @@
 [user]
 	name = Rune Lausen
-	email = rune.lausen@lego.com
+	email = rune@lausennet.dk
 [color]
 	ui = true
 [core]
@@ -22,3 +22,6 @@
 	default = simple
 [init]
 	templatedir = ~/.git_templates
+
+[includeIf "gitdir:~/development/"]
+    path = .gitconfig-work
