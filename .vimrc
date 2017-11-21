@@ -173,6 +173,7 @@ Plugin 'keith/tmux.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'mkitt/tabline.vim'
+Plugin 'haya14busa/is.vim'
 
 " -Themes
 Plugin 'morhetz/gruvbox'
@@ -323,6 +324,12 @@ augroup swig
   autocmd BufNewFile,BufRead *.i set filetype=swig
   autocmd BufNewFile,BufRead *.swg set filetype=swig
   autocmd BufNewFile,BufRead *.swig set filetype=swig
+augroup END
+
+augroup WrapLineInMarkdownFile
+	au!
+	autocmd FileType markdown setlocal textwidth=90
+    autocmd FileType markdown setlocal wrap
 augroup END
 
 " Key bindings for bubbling text
