@@ -17,7 +17,7 @@ fi
 
 export GOPATH=$HOME/Development/go
 
-export PATH=$HOME/bin:/opt/bin:$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin:$HOME/Development/kenlm/bin
+export PATH=/usr/local/sbin:$HOME/bin:/opt/bin:$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin:$HOME/Development/kenlm/bin:/usr/local/texlive/2017basic/bin/x86_64-darwin
 
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
@@ -90,6 +90,8 @@ fi
 #    . ~/.bash_aliases
 #fi
 
+eval $(thefuck --alias)
+
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
@@ -144,7 +146,7 @@ alias la='lla'
 alias ll='ls -lh'
 alias lla='ls -al'
 alias penv='printenv | sort'
-alias po='popd"'
+alias po='popd'
 alias pd='pushd'
 
 #### FUNCTIONS
@@ -163,6 +165,10 @@ function llal {
 
 function hgrep {
     history | grep $* | grep -v hgrep
+}
+
+function md2pdf {
+	pandoc --variable papersize:a4 --variable geometry:margin=1in -o `basename $1 .md`.pdf $1
 }
 
 function phpgrep {

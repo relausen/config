@@ -1,20 +1,6 @@
 let mapleader = ","
 
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2014 Feb 05
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
-
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-  finish
-endif
+set encoding=utf-8
 
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -54,7 +40,7 @@ set undodir=~/.vim/tmp/undo/
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
-let guioptions="egm"
+" let guioptions="egm"
 
 
 " Don't use Ex mode, use Q for formatting
@@ -134,11 +120,11 @@ Plugin 'gmarik/Vundle.vim'
 " Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 " golang
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
 " Python
-Plugin 'davidhalter/jedi-vim'
+" Plugin 'davidhalter/jedi-vim'
 " SWIG interface files
-Plugin 'vim-scripts/SWIG-syntax'
+" Plugin 'vim-scripts/SWIG-syntax'
 " Doxygen
 Plugin 'vim-scripts/DoxygenToolkit.vim'
 " MediaWiki
@@ -174,6 +160,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'mkitt/tabline.vim'
 Plugin 'haya14busa/is.vim'
+Plugin 'rizzatti/dash.vim'
 
 " -Themes
 Plugin 'morhetz/gruvbox'
@@ -296,8 +283,18 @@ nnoremap <leader>yd   :YcmCompleter GetDoc<CR>
 nnoremap <leader>yf   :YcmCompleter FixIt<CR>
 
 " Doxygen setup
-let g:DoxygenToolkit_briefTag_pre=""
 let g:load_doxygen_syntax=1
+let g:DoxygenToolkit_returnTag = "\\return "
+let g:DoxygenToolkit_briefTag_pre = "\\brief "
+let g:DoxygenToolkit_paramTag_pre = "\\param "
+let g:DoxygenToolkit_throwTag_pre = "\\throws "
+let g:DoxygenToolkit_classTag_pre = "\\class "
+let g:DoxygenToolkit_startCommentTag="//! "
+let g:DoxygenToolkit_startCommentBlock="//! "
+let g:DoxygenToolkit_interCommentTag="//! "
+let g:DoxygenToolkit_interCommentBlock="//! "
+let g:DoxygenToolkit_endCommentTag=""
+let g:DoxygenToolkit_endCommentBlock=""
 map <leader>d :Dox<CR>
 
 " Write before commands
