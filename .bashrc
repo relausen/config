@@ -15,9 +15,9 @@ elif [[ "$unamestr" == *'_NT'*  ]]; then
 	platform='windows'
 fi
 
-export GOPATH=$HOME/Development/go
+export PATH=/usr/local/sbin:$HOME/bin:/opt/bin:$PATH:/usr/local/texlive/2017basic/bin/x86_64-darwin
 
-export PATH=/usr/local/sbin:$HOME/bin:/opt/bin:$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin:$HOME/Development/kenlm/bin:/usr/local/texlive/2017basic/bin/x86_64-darwin
+export HOMEBREW_INSTALL_CLEANUP=1
 
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
