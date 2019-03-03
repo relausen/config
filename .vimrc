@@ -219,7 +219,7 @@ colorscheme gruvbox
 
 " Setup airline
 " set guifont=Sauce\ Code\ Powerline\ Light:h13
-set guifont=Sauce\ Code\ Powerline:h13
+set guifont=Source\ Code\ Pro\ for\ Powerline:h13
 let g:airline_powerline_fonts = 1
 set laststatus=2
 let g:airline#extensions#branch#enabled = 1
