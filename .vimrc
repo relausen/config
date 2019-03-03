@@ -122,7 +122,7 @@ Plugin 'Valloric/YouCompleteMe'
 " golang
 " Plugin 'fatih/vim-go'
 " Python
-" Plugin 'davidhalter/jedi-vim'
+Plugin 'davidhalter/jedi-vim'
 " SWIG interface files
 " Plugin 'vim-scripts/SWIG-syntax'
 " Doxygen
@@ -161,6 +161,7 @@ Plugin 'wesQ3/vim-windowswap'
 Plugin 'mkitt/tabline.vim'
 Plugin 'haya14busa/is.vim'
 Plugin 'rizzatti/dash.vim'
+Plugin 'hashivim/vim-terraform'
 
 " -Themes
 Plugin 'morhetz/gruvbox'
