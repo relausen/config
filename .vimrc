@@ -276,7 +276,6 @@ autocmd FileType cpp setlocal commentstring=//\ %s
 "   autocmd QuickFixCmdPost    l* nested lwindow
 " augroup END
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-" let g:syntastic_python_checkers=['flake8']
 let g:syntastic_python_checkers=['pylint']
 
 " YouCompleteMe setup
