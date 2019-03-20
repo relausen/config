@@ -163,6 +163,8 @@ Plugin 'mkitt/tabline.vim'
 Plugin 'haya14busa/is.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'hashivim/vim-terraform'
+Plugin 'juliosueiras/vim-terraform-completion'
+Plugin 'mrk21/yaml-vim'
 
 " -Themes
 Plugin 'morhetz/gruvbox'
@@ -303,6 +305,19 @@ let g:DoxygenToolkit_endCommentTag=""
 let g:DoxygenToolkit_endCommentBlock=""
 map <leader>d :Dox<CR>
 
+" Syntastic Config
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+
+" Terraform Completion setup
+" let g:terraform_completion_keys = 1
+
 " Write before commands
 set autowrite
 
@@ -319,6 +334,12 @@ augroup CursorLine
     au WinLeave * setlocal nocursorline
 augroup END
 hi CursorLine cterm=NONE ctermbg=239
+
+augroup YAML
+	au!
+	autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml " foldmethod=indent
+	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+augroup END
 
 " Recognize QMake .pro and .pri files
 augroup qmake
