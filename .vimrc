@@ -117,12 +117,13 @@ Plugin 'gmarik/Vundle.vim'
 
 " Languages
 " Syntax checker
-" Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 " golang
 " Plugin 'fatih/vim-go'
 " Python
 Plugin 'davidhalter/jedi-vim'
+Plugin 'nvie/vim-flake8'
 " SWIG interface files
 " Plugin 'vim-scripts/SWIG-syntax'
 " Doxygen
@@ -263,6 +264,9 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsSnippetDirectories=[$HOME."/UltiSnips", $HOME."/.vim/UltiSnips", "UltiSnips"]
 let g:UltiSnipsEditSplit="vertical"
 
+" Python setup
+let python_highlight_all=1
+
 " C++ setup
 set errorformat^=%-G%f:%l:\ warning:%m
 autocmd FileType cpp setlocal commentstring=//\ %s
@@ -272,6 +276,7 @@ autocmd FileType cpp setlocal commentstring=//\ %s
 "   autocmd QuickFixCmdPost    l* nested lwindow
 " augroup END
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_python_checkers=['pylint']
 
 " YouCompleteMe setup
 let g:ycm_global_ycm_extra_conf = '~/vim/ycm_extra_conf.py'
@@ -300,6 +305,12 @@ map <leader>d :Dox<CR>
 
 " Write before commands
 set autowrite
+
+" Python
+augroup Python
+	au!
+	autocmd BufWritePost *.py call Flake8()
+augroup END
 
 " Set up highlight of current line
 augroup CursorLine
