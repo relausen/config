@@ -12,6 +12,8 @@
 	ci = commit
 	co = checkout
 	distclean = "!f(){ git clean $1 && git submodule foreach --recursive git clean $1; };f"
+	substat = submodule status --recursive
+	subsync = submodule sync --recursive
 	subup = submodule update --init --recursive
 	stat = status -s
 	undomerge = merge --abort
