@@ -51,9 +51,9 @@ map Q gq
 inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
+" if has('mouse')
+"   set mouse=a
+" endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -118,7 +118,7 @@ Plugin 'gmarik/Vundle.vim'
 " Languages
 " Syntax checker
 Plugin 'vim-syntastic/syntastic'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 " golang
 " Plugin 'fatih/vim-go'
 " Python
@@ -165,6 +165,7 @@ Plugin 'rizzatti/dash.vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'juliosueiras/vim-terraform-completion'
 Plugin 'mrk21/yaml-vim'
+Plugin 'vim-scripts/indentpython.vim'
 
 " -Themes
 Plugin 'morhetz/gruvbox'
@@ -283,6 +284,7 @@ let g:syntastic_python_checkers=['pylint']
 " YouCompleteMe setup
 let g:ycm_global_ycm_extra_conf = '~/vim/ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion = 1
+nnoremap <leader>yr   :YcmCompleter GoToReferences<CR>
 nnoremap <leader>yt   :YcmCompleter GetType<CR>
 nnoremap <leader>yji  :YcmCompleter GoToInclude<CR>
 nnoremap <leader>yjde :YcmCompleter GoToDeclaration<CR>
@@ -338,7 +340,7 @@ hi CursorLine cterm=NONE ctermbg=239
 augroup YAML
 	au!
 	autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml " foldmethod=indent
-	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType yaml setlocal ts=4 sts=4 sw=4 expandtab
 augroup END
 
 " Recognize QMake .pro and .pri files
