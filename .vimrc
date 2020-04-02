@@ -6,8 +6,9 @@ set encoding=utf-8
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Stop the bloody beeping
+" Stop the bloody beeping and blinking
 set visualbell
+set t_vb=
 
 set termguicolors
 
@@ -166,6 +167,8 @@ Plugin 'hashivim/vim-terraform'
 Plugin 'juliosueiras/vim-terraform-completion'
 Plugin 'mrk21/yaml-vim'
 Plugin 'vim-scripts/indentpython.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'https://gitlab.com/goeb/vimya.git'
 
 " -Themes
 Plugin 'morhetz/gruvbox'
@@ -182,7 +185,7 @@ call vundle#end()            " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-  filetype plugin indent on
+filetype plugin indent on
 
 " Let's use ag instead of ack, if present
 if executable('ag')
@@ -224,6 +227,7 @@ colorscheme gruvbox
 " Setup airline
 " set guifont=Sauce\ Code\ Powerline\ Light:h13
 set guifont=Source\ Code\ Pro\ for\ Powerline:h13
+let g:airline#extensions#hunks#enabled = 0
 let g:airline_powerline_fonts = 1
 set laststatus=2
 let g:airline#extensions#branch#enabled = 1
@@ -284,6 +288,7 @@ let g:syntastic_python_checkers=['pylint']
 " YouCompleteMe setup
 let g:ycm_global_ycm_extra_conf = '~/vim/ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_extra_conf_globlist = ['/mnt/c/Users/dkrunlau/development/dwf_maya_python/*','!~/*']
 nnoremap <leader>yr   :YcmCompleter GoToReferences<CR>
 nnoremap <leader>yt   :YcmCompleter GetType<CR>
 nnoremap <leader>yji  :YcmCompleter GoToInclude<CR>
@@ -322,6 +327,8 @@ map <leader>d :Dox<CR>
 
 " Write before commands
 set autowrite
+
+let g:vimyaPort=23456
 
 " Python
 augroup Python
@@ -383,3 +390,5 @@ augroup myvimrc
   " au BufWritePost vimrc,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
   au BufWritePost vimrc,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') && filereadable('$HOME/.gvimrc') | so expand('$HOME/.gvimrc') | endif
 augroup END
+
+let g:ropevim_local_prefix="<C-x>r"
