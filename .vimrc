@@ -164,7 +164,7 @@ Plugin 'haya14busa/is.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'juliosueiras/vim-terraform-completion'
-Plugin 'mrk21/yaml-vim'
+" Plugin 'mrk21/yaml-vim'
 Plugin 'vim-scripts/indentpython.vim'
 
 " -Themes
@@ -219,7 +219,10 @@ map <leader>et :tabe %%
 " Setup theme
 set t_Co=256
 set background=dark
-colorscheme gruvbox
+try
+	colorscheme gruvbox
+catch /.*/
+endtry
 
 " Setup airline
 " set guifont=Sauce\ Code\ Powerline\ Light:h13
@@ -239,7 +242,7 @@ set wildmenu
 set clipboard=unnamed
 
 " Make it easier to remove highlights after search
-nnoremap <silent> <leader>n :nohlsearch<CR>
+nnoremap <silent> <leader>nh :nohlsearch<CR>
 
 " Show line numbers
 set number
@@ -284,6 +287,7 @@ let g:syntastic_python_checkers=['pylint']
 " YouCompleteMe setup
 let g:ycm_global_ycm_extra_conf = '~/vim/ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_auto_hover = ''
 nnoremap <leader>yr   :YcmCompleter GoToReferences<CR>
 nnoremap <leader>yt   :YcmCompleter GetType<CR>
 nnoremap <leader>yji  :YcmCompleter GoToInclude<CR>
@@ -291,6 +295,7 @@ nnoremap <leader>yjde :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>yjdi :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>yd   :YcmCompleter GetDoc<CR>
 nnoremap <leader>yf   :YcmCompleter FixIt<CR>
+nmap <leader>yD <plug>(YCMHover)
 
 " Doxygen setup
 let g:load_doxygen_syntax=1
@@ -323,6 +328,12 @@ map <leader>d :Dox<CR>
 " Write before commands
 set autowrite
 
+" Terraform
+augroup Terraform
+	au!
+	autocmd FileType terraform setlocal ts=2 sts=2 sw=2 expandtab
+augroup END
+
 " Python
 augroup Python
 	au!
@@ -337,11 +348,17 @@ augroup CursorLine
 augroup END
 hi CursorLine cterm=NONE ctermbg=239
 
-augroup YAML
+augroup JSON
 	au!
-	autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml " foldmethod=indent
-	autocmd FileType yaml setlocal ts=4 sts=4 sw=4 expandtab
+	autocmd BufNewFile,BufReadPost *.json set filetype=json " foldmethod=indent
+	autocmd FileType json setlocal ts=4 sts=4 sw=4 expandtab
 augroup END
+
+" augroup YAML
+" 	au!
+" 	autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml " foldmethod=indent
+" 	autocmd FileType yaml setlocal ts=4 sts=4 sw=4 expandtab
+" augroup END
 
 " Recognize QMake .pro and .pri files
 augroup qmake
