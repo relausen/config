@@ -12,10 +12,6 @@ set t_vb=
 
 set termguicolors
 
-" Easier access to [ and ] in normal mode on Danish keyboards
-nmap æ [
-nmap ø ]
-
 " Use smart casing for searches
 set ignorecase
 set smartcase
@@ -29,12 +25,12 @@ set smartcase
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-set backup		" keep a backup file (restore to previous version)
-set undofile		" keep an undo file (undo changes after closing)
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+set backup     " keep a backup file (restore to previous version)
+set undofile   " keep an undo file (undo changes after closing)
+set history=50 " keep 50 lines of command line history
+set ruler      " show the cursor position all the time
+set showcmd    " display incomplete commands
+set incsearch  " do incremental searching
 set directory=~/.vim/tmp/swap/
 set backupdir=~/.vim/tmp/backup/
 set undodir=~/.vim/tmp/undo/
@@ -43,9 +39,6 @@ set undodir=~/.vim/tmp/undo/
 " let &guioptions = substitute(&guioptions, "t", "", "g")
 " let guioptions="egm"
 
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -65,7 +58,6 @@ endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-
   " Enable file type detection.
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
@@ -90,12 +82,20 @@ if has("autocmd")
     \ endif
 
   augroup END
-
 else
-
   set autoindent		" always set autoindenting on
+endif
 
-endif " has("autocmd")
+" See http://vimcasts.org/episodes/minpac/ for this setup of minpac
+source ~/.vim/packages.vim
+source ~/.vim/coc-setup.vim
+source ~/.vim/coc-extensions.vim
+
+let NERDTreeHijackNetrw=1
+
+" Easier access to [ and ] in normal mode on Danish keyboards
+nmap æ [
+nmap ø ]
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
@@ -104,87 +104,6 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 endif
 
-" Vundle
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" Languages
-" Syntax checker
-Plugin 'vim-syntastic/syntastic'
-Plugin 'ycm-core/YouCompleteMe'
-" golang
-" Plugin 'fatih/vim-go'
-" Python
-Plugin 'davidhalter/jedi-vim'
-Plugin 'nvie/vim-flake8'
-" SWIG interface files
-" Plugin 'vim-scripts/SWIG-syntax'
-" Doxygen
-Plugin 'vim-scripts/DoxygenToolkit.vim'
-" MediaWiki
-Plugin 'chikamichi/mediawiki.vim'
-
-" VCS
-" Git
-Plugin 'tpope/vim-fugitive'
-
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-" Misc
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-ragtag'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-abolish'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-airline/vim-airline'
-Plugin 'artoj/qmake-syntax-vim'
-" Plugin 'jiangmiao/auto-pairs'
-Plugin 'Raimondi/delimitMate'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'godlygeek/tabular'
-Plugin 'vim-scripts/argtextobj.vim.git'
-Plugin 'mileszs/ack.vim'
-Plugin 'keith/tmux.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'wesQ3/vim-windowswap'
-Plugin 'mkitt/tabline.vim'
-Plugin 'haya14busa/is.vim'
-Plugin 'rizzatti/dash.vim'
-Plugin 'hashivim/vim-terraform'
-Plugin 'juliosueiras/vim-terraform-completion'
-" Plugin 'mrk21/yaml-vim'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'https://gitlab.com/goeb/vimya.git'
-
-" -Themes
-Plugin 'morhetz/gruvbox'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
 filetype plugin indent on
 
 " Let's use ag instead of ack, if present
@@ -192,6 +111,8 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
+" FZF setup
+nnoremap <C-p> :<C-u>FZF<CR>
 let g:ctrlp_working_path_mode=0
 
 " Disable Auto Pairs AutoPairsFastWrap to make letter 'å' work
@@ -222,10 +143,8 @@ map <leader>et :tabe %%
 " Setup theme
 set t_Co=256
 set background=dark
-try
-	colorscheme gruvbox
-catch /.*/
-endtry
+let g:gruvbox_contrast_dark = 'hard'
+autocmd vimenter * ++nested colorscheme gruvbox
 
 " Setup airline
 " set guifont=Sauce\ Code\ Powerline\ Light:h13
@@ -243,7 +162,7 @@ set wildmode=longest,list,full
 set wildmenu
 
 " Merge vim and OS clipboard
-set clipboard=unnamed
+" set clipboard=unnamed
 
 " Make it easier to remove highlights after search
 nnoremap <silent> <leader>nh :nohlsearch<CR>
@@ -289,10 +208,18 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_python_checkers=['pylint']
 
 " YouCompleteMe setup
-let g:ycm_global_ycm_extra_conf = '~/vim/ycm_extra_conf.py'
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_auto_hover = ''
-let g:ycm_extra_conf_globlist = ['/mnt/c/Users/dkrunlau/development/dwf_maya_python/*','!~/*']
+" let g:ycm_global_ycm_extra_conf = '~/vim/ycm_extra_conf.py'
+" let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_auto_hover = ''
+" let g:ycm_extra_conf_globlist = ['/mnt/c/Users/dkrunlau/development/dwf_maya_python/*','!~/*']
+" let g:ycm_language_server = [
+" 	\   {
+" 	\     'name': 'terraform',
+" 	\     'cmdline': ['terraform-ls', 'serve'],
+" 	\     'filetypes': ['tf', 'terraform']
+" 	\   }
+" \ ]
+
 nnoremap <leader>yr   :YcmCompleter GoToReferences<CR>
 nnoremap <leader>yt   :YcmCompleter GetType<CR>
 nnoremap <leader>yji  :YcmCompleter GoToInclude<CR>
@@ -403,7 +330,7 @@ nmap <leader>v :tabedit $MYVIMRC<CR>
 augroup myvimrc
   au!
   " au BufWritePost vimrc,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-  au BufWritePost vimrc,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') && filereadable('$HOME/.gvimrc') | so expand('$HOME/.gvimrc') | endif
+  au BufWritePost vimrc,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,.vim/packages.vim so $MYVIMRC | if has('gui_running') && filereadable('$HOME/.gvimrc') | so expand('$HOME/.gvimrc') | endif
 augroup END
 
 let g:ropevim_local_prefix="<C-x>r"
