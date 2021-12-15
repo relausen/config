@@ -42,36 +42,18 @@ set wildmode=longest,list,full " Change vim's default tab completion to a more s
 syntax on
 filetype plugin indent on
 
-" Convenient command to see the difference between the current buffer and the " file it was loaded from
 command! DiffOrig vert new | set buftype=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-" Make it easier to remove highlights after search
-nnoremap <silent> <leader>nh :nohlsearch<CR>
-" Convenience keys for opening file in same dir as file in buffer
-" Mnemonics:
-" Edit in Window
-" Edit in Split (horisontal)
-" Edit in Vertical split
-" Edit in Tab
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-map <leader>ew :e %%
+inoremap <C-U> <C-G>u<C-U>
 map <leader>es :sp %%
-map <leader>ev :vsp %%
 map <leader>et :tabe %%
-" Key bindings for bubbling text
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
+map <leader>ev :vsp %%
+map <leader>ew :e %%
 nmap <leader>v :tabedit $MYVIMRC<CR>
-" Easier access to [ and ] in normal mode on Danish keyboards
 nmap æ [
 nmap ø ]
+nnoremap <silent> <leader>nh :nohlsearch<CR>
 
 augroup vimStartup
   autocmd!
@@ -99,6 +81,7 @@ augroup END
 source ~/.vim/packages.vim
 source ~/.vim/coc-setup.vim
 source ~/.vim/coc-extensions.vim
+
 " NerdTree setup
 let NERDTreeHijackNetrw=1
 
