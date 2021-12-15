@@ -6,7 +6,7 @@ endfunction
 set updatetime=500
 set signcolumn=number
 
-autocmd ColorScheme * highlight CocHighlightText ctermbg=238 guibg=#444444
+autocmd ColorScheme * highlight CocHighlightText guibg=#444444
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 if has('nvim')
