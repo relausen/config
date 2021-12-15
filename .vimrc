@@ -1,133 +1,55 @@
 let mapleader = ","
-
-set encoding=utf-8
-
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
-" Stop the bloody beeping and blinking
-set visualbell
-set t_vb=
-
-set termguicolors
-
-" Use smart casing for searches
-set ignorecase
-set smartcase
-
-" Disable arrow keys
-" noremap <Up> <NOP>
-" noremap <Down> <NOP>
-" noremap <Left> <NOP>
-" noremap <Right> <NOP>
-
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-set backup     " keep a backup file (restore to previous version)
-set undofile   " keep an undo file (undo changes after closing)
-set history=50 " keep 50 lines of command line history
-set ruler      " show the cursor position all the time
-set showcmd    " display incomplete commands
-set incsearch  " do incremental searching
-set directory=~/.vim/tmp/swap/
-set backupdir=~/.vim/tmp/backup/
-set undodir=~/.vim/tmp/undo/
-
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
-" let guioptions="egm"
-
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-" if has('mouse')
-"   set mouse=a
-" endif
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
-
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  " filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-
-  augroup END
-else
-  set autoindent		" always set autoindenting on
-endif
-
-" See http://vimcasts.org/episodes/minpac/ for this setup of minpac
-source ~/.vim/packages.vim
-source ~/.vim/coc-setup.vim
-source ~/.vim/coc-extensions.vim
-
-let NERDTreeHijackNetrw=1
-
-" Easier access to [ and ] in normal mode on Danish keyboards
-nmap æ [
-nmap ø ]
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
-endif
-
-filetype plugin indent on
-
-" Let's use ag instead of ack, if present
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-" FZF setup
-nnoremap <C-p> :<C-u>FZF<CR>
-let g:ctrlp_working_path_mode=0
-
-" Disable Auto Pairs AutoPairsFastWrap to make letter 'å' work
-let g:AutoPairsShortcutFastWrap='<Nop>'
-
-" Set path to something sensible
-set path=.,/usr/local/include,,**
-
-" Allow switching away from edited buffer
+set background=dark
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
+set backup " keep a backup file (restore to previous version)
+set backupdir=~/.vim/tmp/backup/
+set directory=~/.vim/tmp/swap/
+set encoding=utf-8
+set expandtab
 set hidden
-
-" Split behaviour
+set history=50
+set hlsearch
+set ignorecase
+set incsearch
+set laststatus=2
+set nocompatible " Use Vim settings
+set noshowmode
+set number
+set path=.,/usr/local/include,,**
+set relativenumber
+set ruler
+set shiftwidth=4
+set showcmd " display incomplete commands
+set smartcase
+set softtabstop=4
 set splitbelow
 set splitright
+set t_Co=256
+set tabstop=4
+set termguicolors
+set timeoutlen=1000
+set ttimeoutlen=10
+set undodir=~/.vim/tmp/undo/
+set undofile " keep an undo file (undo changes after closing)
+set visualbell t_vb= " Stop the bloody beeping and blinking
+set wildmenu
+set wildmode=longest,list,full " Change vim's default tab completion to a more sensible behaviour
 
+syntax on
+filetype plugin indent on
+
+" Convenient command to see the difference between the current buffer and the " file it was loaded from
+command! DiffOrig vert new | set buftype=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
+" Make it easier to remove highlights after search
+nnoremap <silent> <leader>nh :nohlsearch<CR>
 " Convenience keys for opening file in same dir as file in buffer
 " Mnemonics:
 " Edit in Window
@@ -139,50 +61,60 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
+" Key bindings for bubbling text
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+nmap <leader>v :tabedit $MYVIMRC<CR>
+" Easier access to [ and ] in normal mode on Danish keyboards
+nmap æ [
+nmap ø ]
 
-" Setup theme
-set t_Co=256
-set background=dark
+augroup vimStartup
+  autocmd!
+  autocmd FileType text setlocal textwidth=78 " For all text files set 'textwidth' to 78 characters.
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
+
+" Reload .vimrc after edit
+augroup myvimrc
+  au!
+  au BufWritePost vimrc,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,.vim/packages.vim so $MYVIMRC | if has('gui_running') && filereadable('$HOME/.gvimrc') | so expand('$HOME/.gvimrc') | endif
+augroup END
+
+" See http://vimcasts.org/episodes/minpac/ for this setup of minpac
+source ~/.vim/packages.vim
+source ~/.vim/coc-setup.vim
+source ~/.vim/coc-extensions.vim
+" NerdTree setup
+let NERDTreeHijackNetrw=1
+
+" FZF setup
+nnoremap <C-p> :<C-u>FZF<CR>
+let g:ctrlp_working_path_mode=0
+
+" Gruvbox Setup
 let g:gruvbox_contrast_dark = 'hard'
 autocmd vimenter * ++nested colorscheme gruvbox
 
-" Setup airline
-" set guifont=Sauce\ Code\ Powerline\ Light:h13
+" airline Setup
 set guifont=Source\ Code\ Pro\ for\ Powerline:h13
 let g:airline#extensions#hunks#enabled = 0
 let g:airline_powerline_fonts = 1
-set laststatus=2
 let g:airline#extensions#branch#enabled = 1
-set noshowmode
-set timeoutlen=1000
-set ttimeoutlen=10
-
-" Change vim's stupid tab completion to a more sensible behaviour
-set wildmode=longest,list,full
-set wildmenu
-
-" Merge vim and OS clipboard
-" set clipboard=unnamed
-
-" Make it easier to remove highlights after search
-nnoremap <silent> <leader>nh :nohlsearch<CR>
-
-" Show line numbers
-set number
-set relativenumber
-
-" Text width
-" set textwidth=95
-" augroup textwidth_autocmds
-"   autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
-"   autocmd BufEnter * match OverLength /\%96v.*/
-" augroup END
-
-" Sensible tabs
-set tabstop=4
-set shiftwidth=4
-" set softtabstop=4
-set noexpandtab
 
 " delimitMate setup
 let delimitMate_expand_cr = 1
@@ -193,99 +125,30 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsSnippetDirectories=[$HOME."/UltiSnips", $HOME."/.vim/UltiSnips", "UltiSnips"]
 let g:UltiSnipsEditSplit="vertical"
 
-" Python setup
-let python_highlight_all=1
-
 " C++ setup
 set errorformat^=%-G%f:%l:\ warning:%m
 autocmd FileType cpp setlocal commentstring=//\ %s
-" augroup make
-"   au!
-"   autocmd QuickFixCmdPost [^l]* nested cwindow
-"   autocmd QuickFixCmdPost    l* nested lwindow
-" augroup END
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:syntastic_python_checkers=['pylint']
 
-" YouCompleteMe setup
-" let g:ycm_global_ycm_extra_conf = '~/vim/ycm_extra_conf.py'
-" let g:ycm_autoclose_preview_window_after_completion = 1
-" let g:ycm_auto_hover = ''
-" let g:ycm_extra_conf_globlist = ['/mnt/c/Users/dkrunlau/development/dwf_maya_python/*','!~/*']
-" let g:ycm_language_server = [
-" 	\   {
-" 	\     'name': 'terraform',
-" 	\     'cmdline': ['terraform-ls', 'serve'],
-" 	\     'filetypes': ['tf', 'terraform']
-" 	\   }
-" \ ]
-
-nnoremap <leader>yr   :YcmCompleter GoToReferences<CR>
-nnoremap <leader>yt   :YcmCompleter GetType<CR>
-nnoremap <leader>yji  :YcmCompleter GoToInclude<CR>
-nnoremap <leader>yjde :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>yjdi :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>yd   :YcmCompleter GetDoc<CR>
-nnoremap <leader>yf   :YcmCompleter FixIt<CR>
-nmap <leader>yD <plug>(YCMHover)
-
-" Doxygen setup
-let g:load_doxygen_syntax=1
-let g:DoxygenToolkit_returnTag = "\\return "
-let g:DoxygenToolkit_briefTag_pre = "\\brief "
-let g:DoxygenToolkit_paramTag_pre = "\\param "
-let g:DoxygenToolkit_throwTag_pre = "\\throws "
-let g:DoxygenToolkit_classTag_pre = "\\class "
-let g:DoxygenToolkit_startCommentTag="//! "
-let g:DoxygenToolkit_startCommentBlock="//! "
-let g:DoxygenToolkit_interCommentTag="//! "
-let g:DoxygenToolkit_interCommentBlock="//! "
-let g:DoxygenToolkit_endCommentTag=""
-let g:DoxygenToolkit_endCommentBlock=""
-map <leader>d :Dox<CR>
-
-" Syntastic Config
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-
-" Terraform Completion setup
-" let g:terraform_completion_keys = 1
-
-" Write before commands
-set autowrite
-
-" Terraform
+" Terraform setup
 augroup Terraform
-	au!
-	autocmd FileType terraform setlocal ts=2 sts=2 sw=2 expandtab
+  au!
+  autocmd FileType terraform setlocal ts=2 sts=2 sw=2 expandtab
 augroup END
 
-" Python
+" Python setup
 augroup Python
-	au!
-	autocmd BufWritePost *.py call Flake8()
+  au!
+  autocmd BufWritePost *.py call Flake8()
 augroup END
 
-" Set up highlight of current line
-augroup CursorLine
-    au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
-augroup END
-hi CursorLine cterm=NONE ctermbg=239
-
+" JSON setup
 augroup JSON
-	au!
-	autocmd BufNewFile,BufReadPost *.json set filetype=json " foldmethod=indent
-	autocmd FileType json setlocal ts=4 sts=4 sw=4 expandtab
+  au!
+  autocmd BufNewFile,BufReadPost *.json set filetype=json " foldmethod=indent
+  autocmd FileType json setlocal ts=4 sts=4 sw=4 expandtab
 augroup END
 
+" YAML setup
 " augroup YAML
 " 	au!
 " 	autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml " foldmethod=indent
@@ -299,38 +162,9 @@ augroup qmake
   autocmd BufNewFile,BufRead *.pri set filetype=qmake
 augroup END
 
-" Recognize SWIG files
-augroup swig
-  au!
-  autocmd BufNewFile,BufRead *.i set filetype=swig
-  autocmd BufNewFile,BufRead *.swg set filetype=swig
-  autocmd BufNewFile,BufRead *.swig set filetype=swig
-augroup END
-
+"Markdown setup
 augroup WrapLineInMarkdownFile
-	au!
-	autocmd FileType markdown setlocal textwidth=90
-    autocmd FileType markdown setlocal wrap
-augroup END
-
-" Key bindings for bubbling text
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
-
-let g:markdown_fenced_languages = ['cpp']
-
-" .vimrc editing
-" Open .vimrc in new tab
-nmap <leader>v :tabedit $MYVIMRC<CR>
-" Reload .vimrc after edit
-augroup myvimrc
   au!
-  " au BufWritePost vimrc,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-  au BufWritePost vimrc,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,.vim/packages.vim so $MYVIMRC | if has('gui_running') && filereadable('$HOME/.gvimrc') | so expand('$HOME/.gvimrc') | endif
+  autocmd FileType markdown setlocal textwidth=90
+  autocmd FileType markdown setlocal wrap
 augroup END
-
-let g:ropevim_local_prefix="<C-x>r"
