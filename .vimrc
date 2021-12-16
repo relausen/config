@@ -1,3 +1,7 @@
+if &compatible
+  set nocompatible " We only use Vim here :-)
+endif
+
 let mapleader = ","
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
@@ -16,7 +20,6 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
-set nocompatible " Use Vim settings
 set noshowmode
 set number
 set path=.,/usr/local/include,,**
@@ -58,6 +61,7 @@ nnoremap <silent> <leader>nh :nohlsearch<CR>
 augroup vimStartup
   autocmd!
   autocmd FileType text setlocal textwidth=78 " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
@@ -77,7 +81,6 @@ augroup myvimrc
   au BufWritePost vimrc,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,.vim/packages.vim so $MYVIMRC | if has('gui_running') && filereadable('$HOME/.gvimrc') | so expand('$HOME/.gvimrc') | endif
 augroup END
 
-" See http://vimcasts.org/episodes/minpac/ for this setup of minpac
 source ~/.vim/packages.vim
 source ~/.vim/coc-setup.vim
 source ~/.vim/coc-extensions.vim

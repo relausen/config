@@ -1,8 +1,11 @@
+" See http://vimcasts.org/episodes/minpac/ for the techniques used here
+
 command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 command! PackUpdate packadd minpac | source $MYVIMRC | redraw | call minpac#update()
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 
-" if !exists('*minpac#init')
+" Drew Neil uses if !exists('*minpac#init'), but that doesn't work
+" consistently in both MacVim and terminal Vim
 if !exists('g:loaded_minpac')
   finish
 endif
