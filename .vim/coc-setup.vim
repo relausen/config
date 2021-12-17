@@ -23,11 +23,29 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <cr> pumvisible()
                                \ ? coc#_select_confirm()
                                \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+nmap <silent> <leader>gac <plug>(coc-codeaction-cursor)
+nmap <silent> <leader>gaf <plug>(coc-codeaction)
+nmap <silent> <leader>gal <plug>(coc-codeaction-line)
+nmap <silent> <leader>gc <plug>(coc-refactor)
 nmap <silent> <leader>gd <Plug>(coc-definition)
-nmap <silent> <leader>gy <Plug>(coc-type-definition)
-nmap <silent> <leader>gi <Plug>(coc-implementation)
-nmap <silent> <leader>gr <Plug>(coc-references)
-nmap <silent> <leader>gt :call CocActionAsync('doHover')<cr>
+nmap <silent> <leader>gdn <plug>(coc-diagnostic-next)
+nmap <silent> <leader>gdp <plug>(coc-diagnostic-prev)
 nmap <silent> <leader>gf <plug>(coc-fix-current)
-nmap <silent> <leader>ge :call CocAction('codeActions')<cr>
-" nmap <silent> <leader>ge <plug>(coc-refactor)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
+nmap <silent> <leader>gos :call CocAction('showOutline')<cr>
+nmap <silent> <leader>goh :call CocAction('hideOutline')<cr>
+nmap <silent> <leader>gp <plug>(coc-format-selected)
+vmap <silent> <leader>gp <plug>(coc-format-selected)
+nmap <silent> <leader>gr <Plug>(coc-rename)
+nmap <silent> <leader>gref <Plug>(coc-references)
+nmap <silent> <leader>grfa <Plug>(coc-refactor)
+nmap <silent> <leader>gt :call CocActionAsync('definitionHover')<cr>
+nmap <silent> <leader>gy <Plug>(coc-type-definition)
