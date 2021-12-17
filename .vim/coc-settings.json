@@ -1,7 +1,6 @@
 // See https://issueexplorer.com/issue/neoclide/coc.nvim/3492#26992960 for
-// making JSON completion work,
-// at least until https://github.com/microsoft/vscode-json-languageservice/issues/120
-// is fixed
+// making JSON completion work, at least until
+// https://github.com/microsoft/vscode-json-languageservice/issues/120 is fixed
 {
     "languageserver": {
         "terraform": {
