@@ -56,6 +56,8 @@ map <leader>ew :e %%
 nmap <leader>v :tabedit $MYVIMRC<CR>
 nmap æ [
 nmap ø ]
+vmap æ [
+vmap ø ]
 nnoremap <silent> <leader>nh :nohlsearch<CR>
 
 augroup vimStartup
