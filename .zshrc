@@ -11,14 +11,16 @@ elif [[ "$unamestr" == *'_NT'* ]]; then
 	platform='windows'
 fi
 
+CFG_COMMAND_OPTIONS='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME'
+
 setopt HIST_IGNORE_ALL_DUPS
 
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
 
 alias awsume="source \$(pyenv which awsume)"
-alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias cfgtig='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME tig'
+alias cfg="$CFG_COMMAND_OPTIONS /usr/bin/git"
+alias cfgtig="$CFG_COMMAND_OPTIONS tig"
 alias h='history'
 alias l='less'
 alias la='lla'
@@ -27,7 +29,7 @@ alias lla='ls -al'
 alias tf='terraform'
 alias penv='printenv | sort'
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
-alias tigcfg='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME tig'
+alias tigcfg="$CFG_COMMAND_OPTIONS tig"
 
 function cdll {
     cd "$1"
