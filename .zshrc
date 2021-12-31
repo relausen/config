@@ -18,6 +18,7 @@ bindkey '^[[B' history-search-forward
 
 alias awsume="source \$(pyenv which awsume)"
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias cfgtig='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME tig'
 alias h='history'
 alias l='less'
 alias la='lla'
@@ -26,6 +27,7 @@ alias lla='ls -al'
 alias tf='terraform'
 alias penv='printenv | sort'
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
+alias tigcfg='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME tig'
 
 function cdll {
     cd "$1"
