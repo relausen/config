@@ -24,6 +24,7 @@
 	default = simple
 [init]
 	templatedir = ~/.git_templates
+	defaultBranch = main
 
 [includeIf "gitdir:~/development/"]
     path = .gitconfig-work
