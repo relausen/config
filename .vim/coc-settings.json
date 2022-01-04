@@ -2,6 +2,7 @@
 // making JSON completion work, at least until
 // https://github.com/microsoft/vscode-json-languageservice/issues/120 is fixed
 {
+    "rust-analyzer.assist.importGranularity": "item",
     "languageserver": {
         "terraform": {
             "command": "terraform-ls",
