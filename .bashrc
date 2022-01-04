@@ -15,7 +15,7 @@ elif [[ "$unamestr" == *'_NT'*  ]]; then
 	platform='windows'
 fi
 
-export PATH=/usr/local/sbin:$HOME/bin:/opt/bin:$PATH:/usr/local/texlive/2017basic/bin/x86_64-darwin
+export PATH=/usr/local/sbin:$HOME/bin:/opt/bin:$PATH:/usr/local/texlive/2017basic/bin/x86_64-darwin:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 export HOMEBREW_INSTALL_CLEANUP=1
 
@@ -144,10 +144,13 @@ alias h='history'
 alias l='less'
 alias la='lla'
 alias ll='ls -lh'
-alias lla='ls -al'
+alias lla='ls -alh'
 alias penv='printenv | sort'
 alias po='popd'
 alias pd='pushd'
+alias tf='terraform'
+alias tf13='terraform-0.13.5'
+alias tf14='terraform-0.14.0'
 
 #### FUNCTIONS
 function cmakedb {
@@ -181,6 +184,10 @@ function tplgrep {
 
 function lll {
     ll $* | l
+}
+
+function dotview {
+	dot -Tpng $1 -o /tmp/test.png && open /tmp/test.png
 }
 
 function x {
@@ -218,18 +225,21 @@ shopt -s cdspell
 shopt -s no_empty_cmd_completion
 
 #AWSume alias to source the AWSume script
-alias awsume=". awsume"
+#alias awsume=". awsume"
+alias awsume=". $(pyenv which awsume)"
 
-#Auto-Complete function for AWSume
-
+##Auto-Complete function for AWSume
 _awsume() {
     local cur prev opts
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-    opts=$(awsumepy --rolesusers)
+    opts=$(awsume-autocomplete)
     COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
     return 0
 }
 complete -F _awsume awsume
 
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
