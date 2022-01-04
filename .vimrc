@@ -169,6 +169,9 @@ Plugin 'juliosueiras/vim-terraform-completion'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'https://gitlab.com/goeb/vimya.git'
+Plugin 'aklt/plantuml-syntax'
+Plugin 'bfrg/vim-jq'
+Plugin 'jparise/vim-graphql'
 
 " -Themes
 Plugin 'morhetz/gruvbox'
@@ -192,7 +195,8 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-let g:ctrlp_working_path_mode=0
+let g:ctrlp_working_path_mode='r'
+" let g:ctrlp_show_hidden = 1
 
 " Disable Auto Pairs AutoPairsFastWrap to make letter 'å' work
 let g:AutoPairsShortcutFastWrap='<Nop>'
@@ -243,7 +247,7 @@ set wildmode=longest,list,full
 set wildmenu
 
 " Merge vim and OS clipboard
-set clipboard=unnamed
+" set clipboard=unnamed
 
 " Make it easier to remove highlights after search
 nnoremap <silent> <leader>nh :nohlsearch<CR>
@@ -263,7 +267,7 @@ set relativenumber
 set tabstop=4
 set shiftwidth=4
 " set softtabstop=4
-set noexpandtab
+set expandtab
 
 " delimitMate setup
 let delimitMate_expand_cr = 1
@@ -289,10 +293,10 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_python_checkers=['pylint']
 
 " YouCompleteMe setup
-let g:ycm_global_ycm_extra_conf = '~/vim/ycm_extra_conf.py'
+" let g:ycm_global_ycm_extra_conf = '~/vim/ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_auto_hover = ''
-let g:ycm_extra_conf_globlist = ['/mnt/c/Users/dkrunlau/development/dwf_maya_python/*','!~/*']
+" let g:ycm_extra_conf_globlist = ['/mnt/c/Users/dkrunlau/development/dwf_maya_python/*','!~/*']
 nnoremap <leader>yr   :YcmCompleter GoToReferences<CR>
 nnoremap <leader>yt   :YcmCompleter GetType<CR>
 nnoremap <leader>yji  :YcmCompleter GoToInclude<CR>
@@ -352,6 +356,12 @@ augroup CursorLine
     au WinLeave * setlocal nocursorline
 augroup END
 hi CursorLine cterm=NONE ctermbg=239
+
+augroup dsl
+	au!
+	autocmd BufNewFile,BufReadPost *.dsl set filetype=dsl
+	autocmd FileType dsl setlocal ts=4 sts=4 sw=4 expandtab autoindent
+augroup END
 
 augroup JSON
 	au!
