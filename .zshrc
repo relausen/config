@@ -1,5 +1,29 @@
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
+autoload -Uz vcs_info
+autoload -U colors && colors
+
+setopt HIST_IGNORE_ALL_DUPS
+setopt PROMPT_SUBST
+
+right_angle=$'\Ue0b0'
+
+zstyle ':vcs_info:*+*:*' debug false
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr S
+zstyle ':vcs_info:*' unstagedstr U
+zstyle ':vcs_info:git*' formats $'\Ue0a0 %b|%m%c%u'
+precmd() {
+    vcs_info
+    common_part="%{$bold_color%}%{$bg[blue]%}%{$fg[yellow]%} %~ %{$reset_color%}%{$fg[blue]%}"
+    if [[ -n ${vcs_info_msg_0_} ]]; then
+        PS1=$'${common_part}%{$bg[green]%}${right_angle}%{$fg[black]%} ${vcs_info_msg_0_} %{$bg[black]%}%{$fg[green]%}${right_angle}%{$reset_color%}\n%# '
+    else
+        PS1=$'${common_part}%{$bg[black]%}\Ue0b0%{$fg[black]%} %{$reset_color%}\n%# '
+    fi
+}
+# PROMPT=$'%B%F{yellow}%~%f%b [${vcs_info_msg_0_}]\n%f%# '
 
 platform='unknown'
 unamestr=$(uname)
