@@ -13,10 +13,10 @@ fi
 
 CFG_COMMAND_OPTIONS='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME'
 
-setopt HIST_IGNORE_ALL_DUPS
-
-bindkey '^[[A' history-beginning-search-backward
-bindkey '^[[B' history-beginning-search-forward
+bindkey '\e[A' history-beginning-search-backward
+bindkey '\e[B' history-beginning-search-forward
+bindkey '\e[H' beginning-of-line
+bindkey '\e[F' end-of-line
 
 alias awsume="source \$(pyenv which awsume)"
 alias cfg="$CFG_COMMAND_OPTIONS /usr/bin/git"
