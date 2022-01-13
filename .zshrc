@@ -6,6 +6,8 @@ autoload -U colors && colors
 setopt HIST_IGNORE_ALL_DUPS
 setopt PROMPT_SUBST
 
+bindkey -e # Not ready for Vi bindings yet
+
 right_angle=$'\Ue0b0'
 
 zstyle ':vcs_info:*+*:*' debug false
