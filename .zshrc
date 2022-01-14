@@ -8,6 +8,16 @@ setopt PROMPT_SUBST
 
 bindkey -e # Not ready for Vi bindings yet
 
+platform='unknown'
+unamestr=$(uname)
+if [[ "$unamestr" == 'Linux' ]]; then
+    platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    platform='mac'
+elif [[ "$unamestr" == *'_NT'* ]]; then
+    platform='windows'
+fi
+
 CFG_COMMAND_OPTIONS='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME'
 
 bindkey '\e[A' history-beginning-search-backward
