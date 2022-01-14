@@ -47,7 +47,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 precmd() {
     vcs_info
     common_start="${top_prompt_connector} %{$bold_color%}%(0?.%{$fg[green]%}${checkmark}.%{$fg[red]%}${cross}-%?) %{$bg[blue]%}%{$fg[yellow]%} %~ %{$reset_color%}%{$fg[blue]%}"
-    common_end="${bottom_prompt_connector} %# "
+    common_end="${bottom_prompt_connector} %# %{$reset_color%}"
     if [[ -n ${vcs_info_msg_0_} ]]; then
         PS1=$'${common_start}%{$bg[green]%}${right_angle}%{$fg[black]%} ${vcs_info_msg_0_} %{$bg[black]%}%{$fg[green]%}${right_angle}%{$reset_color%}\n${common_end}'
     else
@@ -67,7 +67,7 @@ precmd() {
         battery_symbol=${battery_empty}
     fi
 
-    RPROMPT="${battery}: ${battery_status}%%"
+    RPROMPT="${battery_symbol}: ${battery_status}%%"
 }
 # PROMPT=$'%B%F{yellow}%~%f%b [${vcs_info_msg_0_}]\n%f%# '
 
