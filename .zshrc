@@ -26,7 +26,7 @@ bindkey '\e[H' beginning-of-line
 bindkey '\e[F' end-of-line
 
 alias awsume="source \$(pyenv which awsume)"
-alias cfg="$CFG_COMMAND_OPTIONS /usr/bin/git"
+alias cfg="$CFG_COMMAND_OPTIONS env git"
 alias cfgtig="$CFG_COMMAND_OPTIONS tig"
 alias h='history'
 alias l='less'
