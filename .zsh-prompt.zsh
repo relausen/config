@@ -75,13 +75,3 @@ precmd() {
 
     RPROMPT="${battery_status}%% ${battery_symbol}"
 }
-
-platform='unknown'
-unamestr=$(uname)
-if [[ "$unamestr" == 'Linux' ]]; then
-    platform='linux'
-elif [[ "$unamestr" == 'Darwin' ]]; then
-    platform='mac'
-elif [[ "$unamestr" == *'_NT'* ]]; then
-    platform='windows'
-fi
