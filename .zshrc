@@ -62,7 +62,7 @@ then
 fi
 fpath=(~/.awsume/zsh-autocomplete/ $fpath)
 
-source .zsh-prompt.zsh
+source $HOME/.zsh-prompt.zsh
 
 eval $(thefuck --alias)
 eval "$(pyenv init -)"
