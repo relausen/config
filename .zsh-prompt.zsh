@@ -67,7 +67,7 @@ precmd() {
         battery_symbol=${battery_two_thirds}
     elif [[ battery_status -gt 40 ]]; then
         battery_symbol=${battery_half}
-    elif [[ battery_status -gt 33 ]]; then
+    elif [[ battery_status -gt 15 ]]; then
         battery_symbol=${battery_one_third}
     else
         battery_symbol=${battery_empty}
