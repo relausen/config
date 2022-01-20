@@ -63,7 +63,7 @@ precmd() {
     battery_status=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
     if [[ battery_status -gt 90 ]]; then
         battery_symbol=${battery_full}
-    elif [[ battery_status -gt 66 ]]; then
+    elif [[ battery_status -gt 60 ]]; then
         battery_symbol=${battery_two_thirds}
     elif [[ battery_status -gt 40 ]]; then
         battery_symbol=${battery_half}
