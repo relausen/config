@@ -127,6 +127,7 @@ augroup END
 augroup Python
   au!
   autocmd BufWritePost *.py call Flake8()
+  autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
 augroup END
 
 " JSON setup
