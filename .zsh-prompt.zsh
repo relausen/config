@@ -52,12 +52,12 @@ zstyle ':vcs_info:git*' formats "${branch} %b|%m%c%u"
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 precmd() {
     vcs_info
-    common_start="${top_prompt_connector} %{$bold_color%}%(0?.%{$fg[green]%}${checkmark}.%{$fg[red]%}${cross}-%?)%{$reset_color%} %{$bg[blue]%}%{$fg[black]%}${right_angle}%{$bg[blue]%}%{$fg[yellow]%} %~ %{$reset_color%}%{$fg[blue]%}"
+    common_start="${top_prompt_connector} %{$bold_color%}%(0?.%{$fg[green]%}${checkmark}.%{$fg[red]%}${cross}-%?)%{$reset_color%} %{$fg[blue]%}%S${right_angle}%s%{$bg[blue]%}%{$fg[yellow]%} %~ %{$reset_color%}%{$fg[blue]%}"
     common_end="${bottom_prompt_connector} %# %{$reset_color%}"
     if [[ -n ${vcs_info_msg_0_} ]]; then
-        PS1=$'${common_start}%{$bg[green]%}${right_angle}%{$fg[black]%} ${vcs_info_msg_0_} %{$bg[black]%}%{$fg[green]%}${right_angle}%{$reset_color%}\n${common_end}'
+        PS1=$'${common_start}%{$bg[green]%}${right_angle}%{$fg[black]%} ${vcs_info_msg_0_} %{$reset_color%}%{$fg[green]%}${right_angle}%{$reset_color%}\n${common_end}'
     else
-        PS1=$'${common_start}%{$bg[black]%}\Ue0b0%{$fg[black]%} %{$reset_color%}\n${common_end}'
+        PS1=$'${common_start}${right_angle}%{$reset_color%}\n${common_end}'
     fi
 
     battery_status=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
