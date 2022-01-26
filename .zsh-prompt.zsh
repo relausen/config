@@ -25,8 +25,8 @@ battery_empty=$'\Uf244'
     #     echo "$key -> $val"
     # done
     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]]; then
-        local git_status=$(git status --porcelain)
-        if [[ -z ${git_status} ]]; then
+        local git_status=$(git status --branch --porcelain=1)
+        if [[ -z $(echo "$git_status" | grep -v '^#') ]]; then
             hook_com[misc]+=${checkmark}
         else
             no_of_untracked=$(echo "$git_status" | grep '??' &> /dev/null | wc -l | sed 's/^ *//')
