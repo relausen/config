@@ -8,6 +8,8 @@ top_prompt_connector=$'\U256d'
 bottom_prompt_connector=$'\U2570'
 dash=$'\U2500'
 right_angle=$'\Ue0b0'
+left_arty_paren=$'\Ue0b7'
+right_arty_paren=$'\Ue0b5'
 # branch=$'\Uf418'
 branch=$'\Ue0a0'
 battery_full=$'\Uf240'
@@ -53,7 +55,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 precmd() {
     vcs_info
     venv_name=${VIRTUAL_ENV:+$(basename ${VIRTUAL_ENV})}
-    venv_part=${venv_name:+(%{$fg[blue]%}$venv_name%{$reset_color%}) }
+    venv_part=${venv_name:+${left_arty_paren}%{$fg[blue]%}$venv_name%{$reset_color%}${right_arty_paren}}
     common_start="${top_prompt_connector} %{$bold_color%}%(0?.%{$fg[green]%}${checkmark}.%{$fg[red]%}${cross}-%?)%{$reset_color%} ${venv_part}%{$fg[blue]%}%S${right_angle}%s%{$bg[blue]%}%{$fg[yellow]%} %~ %{$reset_color%}%{$fg[blue]%}"
     common_end="${bottom_prompt_connector} %# %{$reset_color%}"
     if [[ -n ${vcs_info_msg_0_} ]]; then
