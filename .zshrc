@@ -2,9 +2,19 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 autoload -Uz vcs_info
 autoload -U colors && colors
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+autoload -U predict-on
 
 setopt HIST_IGNORE_ALL_DUPS
 setopt PROMPT_SUBST
+
+predict-on
+
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+zle -N predict-on
+zle -N predict-off
 
 bindkey -e # Not ready for Vi bindings yet
 
@@ -20,8 +30,12 @@ fi
 
 CFG_COMMAND_OPTIONS='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME'
 
-bindkey '\e[A' history-beginning-search-backward
-bindkey '\e[B' history-beginning-search-forward
+bindkey '^X^Z' predict-on
+bindkey '^Z' predict-off
+# bindkey '\e[A' history-beginning-search-backward
+# bindkey '\e[B' history-beginning-search-forward
+bindkey '\e[A' up-line-or-beginning-search
+bindkey '\e[B' down-line-or-beginning-search
 bindkey '\e[H' beginning-of-line
 bindkey '\e[F' end-of-line
 
