@@ -2,7 +2,6 @@
 // making JSON completion work, at least until
 // https://github.com/microsoft/vscode-json-languageservice/issues/120 is fixed
 {
-    "python.venvPath": "/Users/rune/Library/Caches/pypoetry/virtualenvs",
     "rust-analyzer.assist.importGranularity": "item",
     "languageserver": {
         "terraform": {

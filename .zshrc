@@ -5,6 +5,7 @@ autoload -U colors && colors
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 autoload -U predict-on
+autoload -Uz compinit
 
 setopt HIST_IGNORE_ALL_DUPS
 setopt PROMPT_SUBST
@@ -27,6 +28,8 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 elif [[ "$unamestr" == *'_NT'* ]]; then
     platform='windows'
 fi
+
+export PATH="$HOME/.poetry/bin:$PATH"
 
 CFG_COMMAND_OPTIONS='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME'
 
@@ -85,8 +88,11 @@ then
   compinit
 fi
 fpath=(~/.awsume/zsh-autocomplete/ $fpath)
+fpath+=~/.zfunc
 
 source $HOME/.zsh-prompt.zsh
 
 eval $(thefuck --alias)
 eval "$(pyenv init -)"
+
+compinit
