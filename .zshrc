@@ -4,18 +4,13 @@ autoload -Uz vcs_info
 autoload -U colors && colors
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
-# autoload -U predict-on
 autoload -Uz compinit
 
 setopt HIST_IGNORE_ALL_DUPS
 setopt PROMPT_SUBST
 
-# predict-on
-
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-# zle -N predict-on
-# zle -N predict-off
 
 bindkey -e # Not ready for Vi bindings yet
 
@@ -33,14 +28,15 @@ export PATH="$HOME/.poetry/bin:$PATH"
 
 CFG_COMMAND_OPTIONS='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME'
 
-# bindkey '^X^Z' predict-on
-# bindkey '^Z' predict-off
 # bindkey '\e[A' history-beginning-search-backward
 # bindkey '\e[B' history-beginning-search-forward
 bindkey '\e[A' up-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
 bindkey '\e[H' beginning-of-line
 bindkey '\e[F' end-of-line
+bindkey '^[^[[C' forward-word
+bindkey '^ ' autosuggest-accept
+bindkey '^J' autosuggest-execute
 
 alias awsume="source \$(pyenv which awsume)"
 alias cfg="$CFG_COMMAND_OPTIONS env git"
@@ -90,6 +86,7 @@ fi
 fpath=(~/.awsume/zsh-autocomplete/ $fpath)
 fpath+=~/.zfunc
 
+# Autosuggestions plugin from https://github.com/zsh-users/zsh-autosuggestions
 source $HOME/.zfunc/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/.zsh-prompt.zsh
 
