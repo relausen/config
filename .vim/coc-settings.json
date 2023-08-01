@@ -18,6 +18,8 @@
                 }
             },
             "settings": {}
-        }
+        },
+        "python.venvPath": "source/save_uploaded_iserver_object",
+        "python.venv": ".venv"
     }
 }

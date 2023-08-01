@@ -24,7 +24,7 @@ elif [[ "$unamestr" == *'_NT'* ]]; then
     platform='windows'
 fi
 
-export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 CFG_COMMAND_OPTIONS='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME'
 
@@ -38,7 +38,7 @@ bindkey '^[^[[C' forward-word
 bindkey '^ ' autosuggest-accept
 bindkey '^J' autosuggest-execute
 
-alias awsume="source \$(pyenv which awsume)"
+# alias awsume="source \$(pyenv which awsume)"
 alias cfg="$CFG_COMMAND_OPTIONS env git"
 alias cfgtig="$CFG_COMMAND_OPTIONS tig"
 alias h='history'
@@ -65,7 +65,7 @@ function hgrep {
 }
 
 function md2pdf {
-	pandoc --variable papersize:a4 --variable geometry:margin=1in -o `basename $1 .md`.pdf $1
+    pandoc --variable papersize:a4 --variable geometry:margin=1in -o `basename $1 .md`.pdf $1
 }
 
 function lll {
@@ -79,18 +79,18 @@ function x {
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-
-  autoload -Uz compinit
-  compinit
 fi
-fpath=(~/.awsume/zsh-autocomplete/ $fpath)
+fpath+=~/.awsume/zsh-autocomplete
 fpath+=~/.zfunc
+autoload -Uz compinit
+compinit
 
 # Autosuggestions plugin from https://github.com/zsh-users/zsh-autosuggestions
 source $HOME/.zfunc/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/.zsh-prompt.zsh
 
 eval $(thefuck --alias)
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
+eval "$(rtx activate zsh)"
 
 compinit

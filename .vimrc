@@ -110,7 +110,7 @@ let g:gruvbox_contrast_dark = 'hard'
 autocmd vimenter * ++nested colorscheme gruvbox
 
 " airline Setup
-set guifont=SauceCodePro\ Nerd\ Font:h13
+set guifont=SauceCodePro\ Nerd\ Font:h14
 let g:airline#extensions#hunks#enabled = 0
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 1
