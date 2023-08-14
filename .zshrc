@@ -51,6 +51,10 @@ alias penv='printenv | sort'
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
 alias tigcfg="$CFG_COMMAND_OPTIONS tig"
 
+function aws-profile {
+    export AWS_PROFILE=$1
+}
+
 function cdll {
     cd "$1"
     ll
@@ -60,16 +64,16 @@ function llal {
     lla $* | l
 }
 
+function lll {
+    ll $* | l
+}
+
 function hgrep {
     history | grep $* | grep -v hgrep
 }
 
 function md2pdf {
     pandoc --variable papersize:a4 --variable geometry:margin=1in -o `basename $1 .md`.pdf $1
-}
-
-function lll {
-    ll $* | l
 }
 
 function x {
