@@ -96,6 +96,6 @@ source $HOME/.zsh-prompt.zsh
 eval $(thefuck --alias)
 # eval "$(pyenv init -)"
 eval "$(rtx activate zsh)"
-if op --version >/dev/null; then
+if command -v op &>/dev/null; then
     eval "$(op completion zsh)" && compdef _op op
 fi
