@@ -32,10 +32,8 @@ xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
-" nmap <silent> <leader>gaf  <plug>(coc-codeaction)
 nmap <silent> <leader>gac  <plug>(coc-codeaction-cursor)
 vmap <silent> <leader>gac  <plug>(coc-codeaction-cursor)
-" nmap <silent> <leader>gal  <plug>(coc-codeaction-line)
 nmap <silent> <leader>gas  <plug>(coc-codeaction-selected)
 nmap <silent> <leader>gc   <plug>(coc-refactor)
 vmap <silent> <leader>gc   <plug>(coc-refactor)
@@ -54,3 +52,12 @@ nmap <silent> <leader>grfa <Plug>(coc-refactor)
 nmap <silent> <leader>gt   :call CocActionAsync('definitionHover')<cr>
 nmap <silent> <leader>gy   <Plug>(coc-type-definition)
 nmap <silent> <leader>gtfv   :call CocAction('terraform.validate')<cr>
+
+" Remap <C-f> and <C-b> to scroll float windows/popups
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+

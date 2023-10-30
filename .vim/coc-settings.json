@@ -2,7 +2,9 @@
 // making JSON completion work, at least until
 // https://github.com/microsoft/vscode-json-languageservice/issues/120 is fixed
 {
-    "rust-analyzer.assist.importGranularity": "item",
+    "rust-analyzer.debug.vimspector.configuration.name": "launch",
+    "rust-analyzer.debug.runtime": "vimspector",
+    "rust-analyzer.trace.server": "verbose",
     "languageserver": {
         "terraform": {
             "command": "terraform-ls",
@@ -18,8 +20,6 @@
                 }
             },
             "settings": {}
-        },
-        "python.venvPath": "source/save_uploaded_iserver_object",
-        "python.venv": ".venv"
+        }
     }
 }

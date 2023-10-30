@@ -10,6 +10,8 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 
+set sh=/bin/zsh
+
 set background=dark
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set backup " keep a backup file (restore to previous version)
@@ -24,6 +26,7 @@ set ignorecase
 set incsearch
 set laststatus=2
 set noshowmode
+set nowrap
 set number
 set path=.,/usr/local/include,,**
 set relativenumber
@@ -49,19 +52,6 @@ syntax on
 filetype plugin indent on
 
 command! DiffOrig vert new | set buftype=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
-
-cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-inoremap <C-U> <C-G>u<C-U>
-map <leader>es :sp %%
-map <leader>et :tabe %%
-map <leader>ev :vsp %%
-map <leader>ew :e %%
-nmap <leader>v :tabedit $MYVIMRC<CR>
-nmap æ [
-nmap ø ]
-vmap æ [
-vmap ø ]
-nnoremap <silent> <leader>nh :nohlsearch<CR>
 
 augroup vimStartup
   autocmd!
@@ -89,6 +79,9 @@ augroup END
 source ~/.vim/packages.vim
 source ~/.vim/coc-setup.vim
 source ~/.vim/coc-extensions.vim
+source ~/.vim/vimspector-setup.vim
+source ~/.vim/help-setup.vim
+source ~/.vim/key_bindings.vim
 
 " NerdTree setup
 let NERDTreeHijackNetrw=1
@@ -102,8 +95,11 @@ elseif executable('ag')
 endif
 
 " FZF setup
-nnoremap <C-p> :<C-u>FZF<CR>
 let g:ctrlp_working_path_mode=0
+
+" rooter setup
+let g:rooter_patterns = ['.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json', 'pyproject.toml']
+let g:rooter_cd_cmd = 'lcd'
 
 " Gruvbox Setup
 let g:gruvbox_contrast_dark = 'hard'
@@ -119,7 +115,6 @@ let g:airline#extensions#branch#enabled = 1
 let delimitMate_expand_cr = 1
 
 " UltiSnips setup
-nnoremap <leader>ue :UltiSnipsEdit<CR>
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsSnippetDirectories=[$HOME."/UltiSnips", $HOME."/.vim/UltiSnips", "UltiSnips"]
 let g:UltiSnipsEditSplit="vertical"
@@ -127,6 +122,12 @@ let g:UltiSnipsEditSplit="vertical"
 " C++ setup
 set errorformat^=%-G%f:%l:\ warning:%m
 autocmd FileType cpp setlocal commentstring=//\ %s
+
+" SH setup
+augroup Sh
+  au!
+  autocmd FileType sh setlocal ts=2 sts=2 sw=2 expandtab
+augroup END
 
 " Terraform setup
 augroup Terraform
@@ -140,6 +141,12 @@ augroup Python
   autocmd BufWritePost *.py call Flake8()
   autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
 augroup END
+if !exists('g:python_indent')
+  let g:python_indent = {}
+endif
+let g:python_indent.open_paren = 'shiftwidth()' 
+let g:python_indent.continue = 'shiftwidth()' 
+let g:python_indent.closed_paren_align_last_line = v:false
 
 " JSON setup
 augroup JSON
