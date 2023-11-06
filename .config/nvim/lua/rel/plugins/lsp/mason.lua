@@ -23,6 +23,7 @@ return {
                 "lua_ls",
                 "pyright",
                 "rust_analyzer",
+                "terraformls",
             },
             automatic_installation = true,
         })
