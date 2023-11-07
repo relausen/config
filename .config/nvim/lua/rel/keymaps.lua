@@ -1,9 +1,7 @@
 local map = vim.keymap
 
 map.set({ "n", "v" }, "æ", "[")
--- map.set("n", "æ", "[")
 map.set({ "n", "v" }, "ø", "]")
--- map.set("v", "ø", "]")
 map.set("n", "<leader>nh", ":nohlsearch<CR>")
 map.set("c", "%%", "getcmdtype() == ':' ? expand('%:h').'/' : '%%'", { expr = true })
 map.set("", "<leader>es", ":sp %%", { remap = true })
@@ -22,3 +20,6 @@ map.set("n", "<leader>Gv", ":vert G<CR>")
 map.set("n", "<leader>Ts", ":term<CR>")
 map.set("n", "<leader>Tt", ":tabnew | term<CR>")
 map.set("n", "<leader>Tv", ":vs | term<CR>")
+map.set("t", "<leader>e", "<C-\\>")
+-- map.set("t", "<C-W>", "<C-\\>")
+map.set("t", "<Esc>", "<C-\\><C-N>")
