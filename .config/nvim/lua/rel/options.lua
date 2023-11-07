@@ -1,5 +1,3 @@
-vim.g.mapleader = ","
-
 local options = {
     background = "dark",
     backspace = { "indent", "eol", "start" },
