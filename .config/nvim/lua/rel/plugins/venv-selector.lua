@@ -7,7 +7,7 @@ return {
         parents = 1,
     },
     keys = {
-        { "<leader>ves", "<cmd>:VenvSelect<cr>" },
-        { "<leader>vec", "<cmd>:VenvSelectCached<cr>" },
+        { "<leader>ves", "<cmd>VenvSelect<cr>" },
+        { "<leader>vec", "<cmd>VenvSelectCached<cr>" },
     }
 }
