@@ -4,6 +4,7 @@ return {
     dependencies = {
         'nvim-lua/plenary.nvim',
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+        "nvim-telescope/telescope-dap.nvim",
         "nvim-tree/nvim-web-devicons",
         "nvim-telescope/telescope-file-browser.nvim",
         "smilovanovic/telescope-search-dir-picker.nvim",
@@ -27,6 +28,7 @@ return {
         telescope.load_extension("fzf")
         telescope.load_extension("search_dir_picker")
         telescope.load_extension("file_browser")
+        telescope.load_extension("dap")
 
         local keymap = vim.keymap
         keymap.set("n", "<leader>fb", "<cmd>Telescope file_browser<cr>", { desc = "Browse files" })
