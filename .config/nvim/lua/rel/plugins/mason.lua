@@ -38,14 +38,21 @@ return {
             automatic_installation = true,
             handlers = {
                 codelldb = function (config)
-                    -- local extension_path = "~/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/lldb/bin/debugserver"
+                    local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/'
+                    local codelldb_path = extension_path .. 'adapter/codelldb'
+                    local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
+
+                    print(codelldb_path)
+
                     config.adapters = {
                         type = "server",
                         port = "${port}",
                         executable = {
-                            executable = vim.fs.normalize("~/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/adapter/codelldb"),
-                            args = { "--port", "${port}" },
-                        }
+                            -- executable = vim.fs.normalize("~/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/adapter/codelldb"),
+                            command = codelldb_path,
+                            args = { "--liblldb", liblldb_path, "--port", "${port}" },
+                        },
+                        args = { "--port", "${port}" },
                     }
                     config.configurations.rust = {
                         {
