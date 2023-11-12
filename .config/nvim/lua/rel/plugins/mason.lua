@@ -6,7 +6,6 @@ return {
     config = function()
         local mason = require("mason")
         local mason_lspconfig = require("mason-lspconfig")
-        -- local mason_dapconfig = require("mason-nvim-dap")
 
         mason.setup({
             ui = {

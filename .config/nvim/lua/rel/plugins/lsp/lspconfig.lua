@@ -83,7 +83,10 @@ return {
 
     lspconfig.ruff_lsp.setup({
       capabilities = capabilities,
-      on_attach = on_attach,
+      on_attach = function(client, buffer)
+        on_attach(client, buffer)
+        client.server_capabilities.hoverProvider = false
+      end,
     })
 
     lspconfig.terraformls.setup({
