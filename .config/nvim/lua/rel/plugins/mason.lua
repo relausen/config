@@ -34,15 +34,21 @@ return {
         mason_dapconfig.setup({
             ensure_installed = {
                 "codelldb",
+                "python",
             },
             automatic_installation = true,
             handlers = {
+                function(config)
+                    -- all sources with no handler get passed here
+
+                    -- Keep original functionality
+                    require('mason-nvim-dap').default_setup(config)
+                end,
+
                 codelldb = function (config)
                     local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/'
                     local codelldb_path = extension_path .. 'adapter/codelldb'
                     local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
-
-                    print(codelldb_path)
 
                     config.adapters = {
                         type = "server",
@@ -66,6 +72,7 @@ return {
                             stopOnEntry = false,
                         }
                     }
+
                     require('mason-nvim-dap').default_setup(config)
                 end
             }

@@ -1,0 +1,18 @@
+return {}
+-- return {
+--     "mfussenegger/nvim-dap-python",
+--     config = function ()
+--         local dap_python = require('dap-python')
+--         dap_python.resolve_python = function()
+--             return "/Users/rune/Library/Caches/pypoetry/virtualenvs/poetry-test-GnoGoGDi-py3.11/bin/python"
+--         end
+--         -- dap_python.setup("~/.virtualenvs/debugpy/bin/python")
+--         -- print(dap_python.resolve_python())
+--
+--         dap_python.setup('~/.virtualenvs/debugpy/bin/python', {
+--             pythonPath = "/Users/rune/Library/Caches/pypoetry/virtualenvs/poetry-test-GnoGoGDi-py3.11/bin/python"
+--         })
+--
+--         print(dap_python.resolve_python())
+--     end
+-- }

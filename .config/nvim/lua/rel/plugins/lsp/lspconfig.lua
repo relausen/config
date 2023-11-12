@@ -8,13 +8,21 @@ return {
     config = function()
         local lspconfig = require("lspconfig")
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
-        local keymap = vim.keymap -- for conciseness
+        local keymap = vim.keymap
+
         local on_attach = function(client, bufnr)
             local opts = { noremap = true, silent = true }
 
             opts.buffer = bufnr
 
             -- set keybinds
+            if vim.fn.has("nvim-0.10") == 1 and client.server_capabilities.inlayHintProvider then
+                vim.notify("Inlay hints are supported")
+                keymap.set("n", "<leader>ti", function() vim.lsp.inlay_hint(bufnr, true) end, opts) -- show definition, references
+            -- else
+            --     vim.notify("Inlay hints not supported")
+            end
+
             opts.desc = "Show LSP references"
             keymap.set("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
@@ -63,7 +71,7 @@ return {
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
-        lspconfig["rust_analyzer"].setup({
+        lspconfig.rust_analyzer.setup({
             capabilities = capabilities,
             on_attach = on_attach,
         })
@@ -73,36 +81,36 @@ return {
         --     on_attach = on_attach,
         -- })
 
-        lspconfig["ruff_lsp"].setup({
+        lspconfig.ruff_lsp.setup({
             capabilities = capabilities,
             on_attach = on_attach,
         })
 
-        lspconfig["terraformls"].setup({
+        lspconfig.terraformls.setup({
             capabilities = capabilities,
             on_attach = on_attach,
         })
 
-        lspconfig["lua_ls"].setup({
+        lspconfig.lua_ls.setup({
             capabilities = capabilities,
             on_attach = on_attach,
             settings = { -- custom settings for lua
-            Lua = {
-                -- make the language server recognize "vim" global
-                diagnostics = {
-                    globals = { "vim" },
-                },
-                workspace = {
-                    -- make language server aware of runtime files
-                    library = {
-                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.stdpath("config") .. "/lua"] = true,
+                Lua = {
+                    -- make the language server recognize "vim" global
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                    workspace = {
+                        -- make language server aware of runtime files
+                        library = {
+                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                            [vim.fn.stdpath("config") .. "/lua"] = true,
+                        },
                     },
                 },
             },
-        },
-    })
+        })
 
 
-end,
+    end,
 }

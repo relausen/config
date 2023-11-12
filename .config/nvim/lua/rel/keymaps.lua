@@ -2,7 +2,7 @@ local map = vim.keymap
 
 map.set({ "n", "v" }, "æ", "[")
 map.set({ "n", "v" }, "ø", "]")
-map.set({ "n", "t" }, "<C-æ>", "<C-\\>")
+map.set({ "n", "t", "i" }, "<C-æ>", "<C-\\>", { remap = true})
 map.set({ "n" }, "<C-ø>", "<C-[>")
 map.set({ "n" }, "<C-å>", "<C-]>")
 map.set("n", "<leader>nh", "<cmd>nohlsearch<CR>")
