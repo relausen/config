@@ -1,10 +1,11 @@
 return {
-  'mfussenegger/nvim-dap',
+  "mfussenegger/nvim-dap",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "rcarriga/nvim-dap-ui",
     "theHamsta/nvim-dap-virtual-text",
     "ldelossa/nvim-dap-projects",
+    "jay-babu/mason-nvim-dap.nvim",
     "mfussenegger/nvim-dap-python",
   },
   config = function ()
@@ -31,8 +32,6 @@ return {
 
     dap_projects.search_project_config()
 
-    dap_python.setup("~/.virtualenvs/debugpy/bin/python")
-
     local opts = { noremap = true, silent = true }
     keymap.set("n", "<leader>b", dap.toggle_breakpoint, opts)
     keymap.set("n", "<leader>dc", dap.continue, opts)
@@ -40,5 +39,56 @@ return {
     keymap.set("n", "<leader>di", dap.step_into, opts)
 
     vim.opt["mouse"] = "a"
+
+
+    local mason_dapconfig = require("mason-nvim-dap")
+
+    mason_dapconfig.setup({
+      ensure_installed = {
+        "codelldb",
+        "python",
+      },
+      automatic_installation = true,
+      handlers = {
+        --     function(config)
+        --         -- all sources with no handler get passed here
+        --
+        --         -- Keep original functionality
+        --         require('mason-nvim-dap').default_setup(config)
+        --     end,
+        --
+        codelldb = function (config)
+          local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/'
+          local codelldb_path = extension_path .. 'adapter/codelldb'
+          local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
+
+          config.adapters = {
+            type = "server",
+            port = "${port}",
+            executable = {
+              -- executable = vim.fs.normalize("~/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/adapter/codelldb"),
+              command = codelldb_path,
+              args = { "--liblldb", liblldb_path, "--port", "${port}" },
+            },
+            args = { "--port", "${port}" },
+          }
+          config.configurations.rust = {
+            {
+              name = "Launch file",
+              type = "lldb",
+              request = "launch",
+              program = function()
+                return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+              end,
+              cwd = '${workspaceFolder}',
+              stopOnEntry = false,
+            }
+          }
+
+          require('mason-nvim-dap').default_setup(config)
+        end
+      }
+    })
+    dap_python.setup("~/.virtualenvs/debugpy/bin/python")
   end,
 }
