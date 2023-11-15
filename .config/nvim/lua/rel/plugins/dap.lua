@@ -32,15 +32,6 @@ return {
 
     dap_projects.search_project_config()
 
-    local opts = { noremap = true, silent = true }
-    keymap.set("n", "<leader>b", dap.toggle_breakpoint, opts)
-    keymap.set("n", "<leader>dc", dap.continue, opts)
-    keymap.set("n", "<leader>do", dap.step_over, opts)
-    keymap.set("n", "<leader>di", dap.step_into, opts)
-
-    vim.opt["mouse"] = "a"
-
-
     local mason_dapconfig = require("mason-nvim-dap")
 
     mason_dapconfig.setup({
@@ -66,7 +57,6 @@ return {
             type = "server",
             port = "${port}",
             executable = {
-              -- executable = vim.fs.normalize("~/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/adapter/codelldb"),
               command = codelldb_path,
               args = { "--liblldb", liblldb_path, "--port", "${port}" },
             },
@@ -90,5 +80,14 @@ return {
       }
     })
     dap_python.setup("~/.virtualenvs/debugpy/bin/python")
+    dap_python.test_runner = 'pytest'
+
+    local opts = { noremap = true, silent = true }
+    keymap.set("n", "<leader>b", dap.toggle_breakpoint, opts)
+    keymap.set("n", "<leader>dc", dap.continue, opts)
+    keymap.set("n", "<leader>dt", dap.terminate, opts)
+    keymap.set("n", "<F1>", dap.step_over, opts)
+    keymap.set("n", "<F2>", dap.step_into, opts)
+    keymap.set("n", "<F3>", dap.step_out, opts)
   end,
 }
