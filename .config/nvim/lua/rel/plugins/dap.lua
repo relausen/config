@@ -36,6 +36,7 @@ return {
 
     mason_dapconfig.setup({
       ensure_installed = {
+        "bash",
         "codelldb",
         "python",
       },
