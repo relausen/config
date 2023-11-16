@@ -84,11 +84,17 @@ return {
     dap_python.test_runner = 'pytest'
 
     local opts = { noremap = true, silent = true }
+    opts.desc = "Toggle breakpoint"
     keymap.set("n", "<leader>b", dap.toggle_breakpoint, opts)
+    opts.desc = "Debug Continue"
     keymap.set("n", "<leader>dc", dap.continue, opts)
+    opts.desc = "Debug Terminate"
     keymap.set("n", "<leader>dt", dap.terminate, opts)
+    opts.desc = "Step over"
     keymap.set("n", "<F1>", dap.step_over, opts)
+    opts.desc = "Step into"
     keymap.set("n", "<F2>", dap.step_into, opts)
+    opts.desc = "Step out"
     keymap.set("n", "<F3>", dap.step_out, opts)
   end,
 }
