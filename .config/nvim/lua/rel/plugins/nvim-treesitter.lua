@@ -41,6 +41,7 @@ return {
           "gitignore",
           "python",
           "rust",
+          "terraform",
         },
         incremental_selection = {
           enable = true,
