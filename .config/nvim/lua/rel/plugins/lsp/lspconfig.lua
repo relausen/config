@@ -81,13 +81,18 @@ return {
         on_attach = on_attach,
     })
 
-    lspconfig.ruff_lsp.setup({
-      capabilities = capabilities,
-      on_attach = function(client, buffer)
-        on_attach(client, buffer)
-        client.server_capabilities.hoverProvider = false
-      end,
-    })
+    -- lspconfig.pylsp.setup({
+    --     capabilities = capabilities,
+    --     on_attach = on_attach,
+    -- })
+
+    -- lspconfig.ruff_lsp.setup({
+    --   capabilities = capabilities,
+    --   on_attach = function(client, buffer)
+    --     on_attach(client, buffer)
+    --     client.server_capabilities.hoverProvider = false
+    --   end,
+    -- })
 
     lspconfig.terraformls.setup({
       capabilities = capabilities,

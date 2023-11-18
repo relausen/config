@@ -88,8 +88,10 @@ return {
     keymap.set("n", "<leader>b", dap.toggle_breakpoint, opts)
     opts.desc = "Debug Continue"
     keymap.set("n", "<leader>dc", dap.continue, opts)
+    opts.desc = "Debug Restart"
+    keymap.set("n", "<leader>dR", dap.terminate, opts)
     opts.desc = "Debug Terminate"
-    keymap.set("n", "<leader>dt", dap.terminate, opts)
+    keymap.set("n", "<leader>dT", dap.terminate, opts)
     opts.desc = "Step over"
     keymap.set("n", "<F1>", dap.step_over, opts)
     opts.desc = "Step into"

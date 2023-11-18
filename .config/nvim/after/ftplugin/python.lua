@@ -10,7 +10,7 @@ opts.desc = "Run test method/function"
 keymap.set("n", "<leader>dm", dap_python.test_method, opts)
 
 opts.desc = "Run test class"
-keymap.set("n", "<leader>dc", dap_python.test_class, opts)
+keymap.set("n", "<leader>dC", dap_python.test_class, opts)
 
 opts.desc = "Debug selection"
 keymap.set("n", "<leader>ds", dap_python.debug_selection, opts)
