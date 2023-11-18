@@ -11,7 +11,7 @@ function M.config()
     { nil, "<leader>tv", "Vertical Terminal", "vertical", 0.4 },
     { nil, "<leader>tf", "Float Terminal", "float", nil },
     { "python", "<leader>tp", "Float Python Terminal", "float", nil },
-    { "python", "<leader>tg", "Float Git Terminal", "float", nil },
+    { "lazygit", "<leader>tg", "Float Git Terminal", "float", nil },
   }
 
   local function get_buf_size()
