@@ -3,8 +3,8 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
         options = {
-            -- theme = 'gruvbox',
-            theme = 'auto',
+            -- theme = 'auto',
+            theme = 'tokyonight',
         }
     }
 }
