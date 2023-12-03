@@ -44,8 +44,8 @@ alias cfgtig="$CFG_COMMAND_OPTIONS tig"
 alias h='history'
 alias l='less'
 alias la='lla'
-alias ll='ls -lh'
-alias lla='ls -al'
+alias ll='eza -lh'
+alias lla='eza -alh'
 alias tf='terraform'
 alias penv='printenv | sort'
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
@@ -99,3 +99,5 @@ eval "$(rtx activate zsh)"
 if command -v op &>/dev/null; then
     eval "$(op completion zsh)" && compdef _op op
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

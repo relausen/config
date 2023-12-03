@@ -241,3 +241,5 @@ _awsume() {
 complete -F _awsume awsume
 
 . "$HOME/.cargo/env"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
