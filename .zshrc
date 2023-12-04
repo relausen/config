@@ -104,7 +104,6 @@ fi
 
 if command -v neofetch &>/dev/null; then
     local backend=ascii
-    echo ${TERM}
     if [[ ${TERM} == xterm-kitty ]]; then
         backend=kitty
     fi
