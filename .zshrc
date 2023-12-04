@@ -107,5 +107,6 @@ if command -v neofetch &>/dev/null; then
     if [[ ${TERM} == xterm-kitty ]]; then
         backend=kitty
     fi
-    neofetch --backend ${backend} --size "20%"
+    neofetch --backend ${backend} --size "680px"
+    # neofetch --backend ${backend} --size "20%"
 fi
