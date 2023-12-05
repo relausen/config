@@ -11,6 +11,8 @@ setopt PROMPT_SUBST
 
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
+zle_highlight=('paste:none')
+# unset zle_bracketed_paste
 
 bindkey -e # Not ready for Vi bindings yet
 
@@ -107,6 +109,6 @@ if command -v neofetch &>/dev/null; then
     if [[ ${TERM} == xterm-kitty ]]; then
         backend=kitty
     fi
-    neofetch --backend ${backend} --size "680px"
+    neofetch --backend ${backend} --size "590px"
     # neofetch --backend ${backend} --size "20%"
 fi
