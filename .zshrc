@@ -87,13 +87,15 @@ then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
 fpath+=~/.awsume/zsh-autocomplete
-fpath+=~/.zfunc
+fpath+=${HOME}/.zfunc
 autoload -Uz compinit
 compinit
 
-# Autosuggestions plugin from https://github.com/zsh-users/zsh-autosuggestions
-source $HOME/.zfunc/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/.zsh-prompt.zsh
+source ${HOME}/.zfunc/plugin_manager
+
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 
 eval $(thefuck --alias)
 # eval "$(pyenv init -)"
@@ -104,11 +106,11 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if command -v neofetch &>/dev/null; then
-    local backend=ascii
-    if [[ ${TERM} == xterm-kitty ]]; then
-        backend=kitty
-    fi
-    neofetch --backend ${backend} --size "590px"
-    # neofetch --backend ${backend} --size "20%"
-fi
+# if command -v neofetch &>/dev/null; then
+#     local backend=ascii
+#     if [[ ${TERM} == xterm-kitty ]]; then
+#         backend=kitty
+#     fi
+#     neofetch --backend ${backend} --size "590px"
+#     # neofetch --backend ${backend} --size "20%"
+# fi
