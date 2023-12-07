@@ -106,11 +106,10 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# if command -v neofetch &>/dev/null; then
-#     local backend=ascii
-#     if [[ ${TERM} == xterm-kitty ]]; then
-#         backend=kitty
-#     fi
-#     neofetch --backend ${backend} --size "590px"
-#     # neofetch --backend ${backend} --size "20%"
-# fi
+if command -v neofetch &>/dev/null; then
+    local backend=ascii
+    if [[ ${TERM} == xterm-kitty ]]; then
+        backend=kitty
+    fi
+    neofetch --backend ${backend} --size "590px"
+fi
