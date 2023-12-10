@@ -82,6 +82,17 @@ function x {
     chmod +x $*
 }
 
+function new_kitty_session {
+    local session_name=$1
+    local session_dir=$2
+    if [ -z "$session_dir" ]; then
+        dir=current
+    else
+        dir=$session_dir
+    fi
+    kitty @ launch --type os-window --os-window-title $session_name --cwd ${dir}
+}
+
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
