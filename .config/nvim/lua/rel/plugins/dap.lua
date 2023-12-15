@@ -33,6 +33,7 @@ return {
     dap_projects.search_project_config()
 
     local mason_dapconfig = require("mason-nvim-dap")
+    local mason_registry = require("mason-registry")
 
     mason_dapconfig.setup({
       ensure_installed = {
@@ -50,7 +51,8 @@ return {
         --     end,
         --
         codelldb = function (config)
-          local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/'
+          local codelldb = mason_registry.get_package("codelldb")
+          local extension_path = codelldb:get_install_path() .. "/extension/"
           local codelldb_path = extension_path .. 'adapter/codelldb'
           local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
 
