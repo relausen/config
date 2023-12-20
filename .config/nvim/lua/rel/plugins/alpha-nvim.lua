@@ -28,7 +28,7 @@ return {
     }
 
     -- Send config to alpha
-    alpha.setup(dashboard.opts)
+    alpha.setup(dashboard.config)
 
     -- Disable folding on alpha buffer
     vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
