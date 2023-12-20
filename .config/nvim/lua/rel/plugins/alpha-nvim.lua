@@ -27,6 +27,8 @@ return {
       dashboard.button("q", " > Quit NVIM", "<cmd>qa<CR>"),
     }
 
+    dashboard.section.footer.val = require("alpha.fortune")()
+
     -- Send config to alpha
     alpha.setup(dashboard.config)
 
