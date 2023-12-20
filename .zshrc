@@ -27,6 +27,8 @@ elif [[ "$unamestr" == *'_NT'* ]]; then
 fi
 
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export EDITOR=nvim
+export VISUAL=nvim
 
 CFG_COMMAND_OPTIONS='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME'
 
