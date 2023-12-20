@@ -1,12 +1,12 @@
 return {
   'nvim-telescope/telescope.nvim',
-  tag = '0.1.4',
+  tag = "0.1.5",
   dependencies = {
     'nvim-lua/plenary.nvim',
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     "nvim-telescope/telescope-dap.nvim",
-    "nvim-tree/nvim-web-devicons",
     "nvim-telescope/telescope-file-browser.nvim",
+    "nvim-tree/nvim-web-devicons",
     "smilovanovic/telescope-search-dir-picker.nvim",
   },
   config = function()
