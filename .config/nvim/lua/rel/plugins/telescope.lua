@@ -13,6 +13,10 @@ return {
     local telescope = require("telescope")
     local actions = require("telescope.actions")
 
+    telescope.load_extension("fzf")
+    telescope.load_extension("search_dir_picker")
+    telescope.load_extension("file_browser")
+    telescope.load_extension("dap")
     telescope.setup({
       defaults = {
         mappings = {
