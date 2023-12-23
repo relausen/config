@@ -32,6 +32,7 @@ return {
           "cpp",
           "css",
           "dockerfile",
+          "c_sharp",
           "gitignore",
           "graphql",
           "html",

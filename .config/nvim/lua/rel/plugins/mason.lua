@@ -25,6 +25,7 @@ return {
         "ruff_lsp",
         "rust_analyzer",
         "terraformls",
+        "csharp_ls",
       },
       automatic_installation = true,
     })
