@@ -42,8 +42,8 @@ bindkey '^J' autosuggest-execute
 
 # alias awsume="source \$(pyenv which awsume)"
 alias cfg="$CFG_COMMAND_OPTIONS env git"
-alias cfgtig="$CFG_COMMAND_OPTIONS tig"
 alias cfglazy="lazygit --work-tree $HOME --git-dir $HOME/.cfg"
+alias cfgtig="$CFG_COMMAND_OPTIONS tig"
 alias h='history'
 alias l='less'
 alias la='lla'
