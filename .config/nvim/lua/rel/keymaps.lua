@@ -1,7 +1,7 @@
 local map = vim.keymap
 
-map.set({ "n", "v" }, "æ", "[")
-map.set({ "n", "v" }, "ø", "]")
+map.set({ "n", "v" }, "æ", "[", { remap = true })
+map.set({ "n", "v" }, "ø", "]", { remap = true })
 map.set({ "n", "t", "i" }, "<C-æ>", "<C-\\>", { remap = true})
 map.set({ "n" }, "<C-ø>", "<C-[>")
 map.set({ "n" }, "<C-å>", "<C-]>")
