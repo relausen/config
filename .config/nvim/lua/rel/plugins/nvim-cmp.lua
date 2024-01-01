@@ -7,7 +7,7 @@ return {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lua",
     "hrsh7th/cmp-nvim-lsp",
-    "L3MON4D3/LuaSnip",
+    {"L3MON4D3/LuaSnip", build = "make install_jsregexp"},
     "saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
     "PhilRunninger/cmp-rpncalc",
@@ -35,8 +35,22 @@ return {
         documentation = cmp.config.window.bordered(),
       },
       mapping = cmp.mapping.preset.insert({
-        ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-        ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+        ["<C-k>"] = cmp.mapping(function(fallback)
+          if luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end, {"i", "s"}),
+        ["<C-j>"] = cmp.mapping(function(fallback)
+          if luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, {"i", "s"}),
+        ["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+        ["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
