@@ -111,7 +111,7 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 
 eval $(thefuck --alias)
 # eval "$(pyenv init -)"
-eval "$(rtx activate zsh)"
+eval "$(mise activate zsh)"
 if command -v op &>/dev/null; then
     eval "$(op completion zsh)" && compdef _op op
 fi
