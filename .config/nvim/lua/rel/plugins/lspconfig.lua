@@ -109,6 +109,9 @@ return {
       on_attach = on_attach,
       settings = { -- custom settings for lua
         Lua = {
+          hint = {
+            enable = true,
+          },
           -- make the language server recognize "vim" global
           diagnostics = {
             globals = { "vim" },
