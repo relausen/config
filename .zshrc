@@ -103,7 +103,11 @@ fpath+=${HOME}/.zfunc
 autoload -Uz compinit
 compinit
 
-source $HOME/.zsh-prompt.zsh
+if command -v starship &>/dev/null; then
+    eval "$(starship init zsh)"
+else
+    source $HOME/.zsh-prompt.zsh
+fi
 source ${HOME}/.zfunc/plugin_manager
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
