@@ -26,6 +26,7 @@ return {
         "rust_analyzer",
         "terraformls",
         "csharp_ls",
+        "yamlls",
       },
       automatic_installation = true,
     })
