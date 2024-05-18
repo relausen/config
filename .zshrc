@@ -117,6 +117,7 @@ if command -v op &>/dev/null; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /opt/homebrew/etc/profile.d/z.sh ] && source /opt/homebrew/etc/profile.d/z.sh
 
 if [[ ${SHLVL} -eq 1 ]]; then
     if command -v fastfetch &>/dev/null; then
