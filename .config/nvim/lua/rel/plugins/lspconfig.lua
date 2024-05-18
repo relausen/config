@@ -18,7 +18,7 @@ return {
       -- set keybinds
       if vim.fn.has("nvim-0.10") == 1 and client.server_capabilities.inlayHintProvider then
         vim.notify("Inlay hints are supported")
-        keymap.set("n", "<leader>ti", function() vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr)) end, opts) -- show definition, references
+        keymap.set("n", "<leader>ti", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, opts)
         -- else
         --     vim.notify("Inlay hints not supported")
       end
