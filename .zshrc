@@ -108,6 +108,11 @@ if command -v starship &>/dev/null; then
 else
     source $HOME/.zsh-prompt.zsh
 fi
+if command -v zoxide &>/dev/null; then
+    eval "$(zoxide init --cmd cd zsh)"
+else
+    source $HOME/.zsh-prompt.zsh
+fi
 source ${HOME}/.zfunc/plugin_manager
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
@@ -121,7 +126,6 @@ if command -v op &>/dev/null; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f /opt/homebrew/etc/profile.d/z.sh ] && source /opt/homebrew/etc/profile.d/z.sh
 
 if [[ ${SHLVL} -eq 1 ]]; then
     if command -v fastfetch &>/dev/null; then
