@@ -41,14 +41,15 @@ bindkey '^ ' autosuggest-accept
 bindkey '^J' autosuggest-execute
 
 # alias awsume="source \$(pyenv which awsume)"
+alias cat='bat'
 alias cfg="$CFG_COMMAND_OPTIONS env git"
 alias cfglazy="lazygit --work-tree $HOME --git-dir $HOME/.cfg"
 alias cfgtig="$CFG_COMMAND_OPTIONS tig"
 alias h='history'
 alias l='less'
 alias la='lla'
-alias ll='eza -lh'
-alias lla='eza -alh'
+alias ll='eza -lh --icons=auto --git --group-directories-first --time-style=long-iso --git-repos'
+alias lla='ll -a'
 alias tf='terraform'
 alias penv='printenv | sort'
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
