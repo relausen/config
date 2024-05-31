@@ -92,7 +92,7 @@ function new_kitty_session {
     else
         dir=$session_dir
     fi
-    kitty @ launch --type os-window --os-window-title $session_name --cwd ${dir}
+    kitty @ launch --type os-window --window-title $session_name --cwd ${dir}
 }
 
 if type brew &>/dev/null
