@@ -14,20 +14,20 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:#394260 bg:#212736)\
+$fill\
+$python\
 $terraform\
 $aws\
-$nodejs\
-$python\
 $rust\
 [](fg:#212736 bg:#1d2230)\
 [ ](fg:#1d2230)\
-$fill $battery\
 \n\
 [╰╴](white)\
-$character"""
+$character\
+"""
 
-# [[battery.display]]
-# threshold = 25
+[aws]
+format = 'on [($profile )(\($region\))(\[$duration\])]($style)'
 
 [[battery.display]]
 threshold = 20
@@ -45,11 +45,18 @@ disabled = false
 [os.symbols]
 Macos = ""
 
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[terraform]
+format = '[$symbol($version )$workspace]($style) '
+
 [directory]
 style = "fg:#e3e5e5 bg:#769ff0"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
+truncate_to_repo = false
 
 [directory.substitutions]
 "Documents" = "󰈙 "
@@ -66,17 +73,6 @@ format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
 style = "bg:#394260"
 format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
 
-[nodejs]
-symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
-
 [rust]
 style = "bg:#212736"
 format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
-
-[time]
-disabled = false
-time_format = "%R" # Hour:Minute Format
-style = "bg:#1d2230"
-format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
