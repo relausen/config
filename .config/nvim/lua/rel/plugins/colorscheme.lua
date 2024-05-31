@@ -9,8 +9,10 @@ return {
       lualine_bold = true,
       hide_inactive_statusline = true,
       on_highlights = function(highlights, colors)
-        highlights.LineNrAbove = { fg = colors.fg_dark }
-        highlights.LineNrBelow = { fg = colors.fg_dark }
+        highlights.LineNrAbove = { fg = "#6e6e6e" }
+        highlights.LineNrBelow = { fg = "#6e6e6e" }
+        -- highlights.LineNrAbove = { fg = colors.fg_dark }
+        -- highlights.LineNrBelow = { fg = colors.fg_dark }
       end,
     })
     vim.cmd("colorscheme tokyonight")
