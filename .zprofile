@@ -7,3 +7,6 @@ if command -v mise &> /dev/null; then
         export PATH="${PYTHON_BIN_PATH}:${PATH}"
     fi
 fi
+if command -v gh &> /dev/null; then
+    export HOMEBREW_GITHUB_API_TOKEN=$(gh auth token)
+fi
