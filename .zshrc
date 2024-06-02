@@ -111,6 +111,7 @@ if command -v zoxide &>/dev/null; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
 source ${HOME}/.zfunc/plugin_manager
+source ${HOME}/.zfunc/wezterm-shell-integration
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
