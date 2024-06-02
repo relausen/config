@@ -4,6 +4,7 @@ local wezterm = require 'wezterm'
 local key_bindings = require 'key-bindings'
 local hyperlinks = require('hyperlinks')
 
+local mux = wezterm.mux
 local config = wezterm.config_builder()
 
 config.audible_bell = "Disabled"
@@ -31,5 +32,10 @@ config.window_padding = {
   top = "0.5cell",
   bottom = "0.5cell",
 }
+
+wezterm.on("gui-startup", function()
+  local tab, pane, window = mux.spawn_window{}
+  window:gui_window():maximize()
+end)
 
 return config
