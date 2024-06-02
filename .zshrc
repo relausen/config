@@ -30,17 +30,15 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 CFG_COMMAND_OPTIONS='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME'
 
-# bindkey '\e[A' history-beginning-search-backward
-# bindkey '\e[B' history-beginning-search-forward
+bindkey '\e[3~' delete-char
 bindkey '\e[A' up-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
 bindkey '\e[H' beginning-of-line
 bindkey '\e[F' end-of-line
-bindkey '^[^[[C' forward-word
+bindkey '\e^[[C' forward-word
 bindkey '^ ' autosuggest-accept
 bindkey '^J' autosuggest-execute
 
-# alias awsume="source \$(pyenv which awsume)"
 alias cat='bat'
 alias cfg="$CFG_COMMAND_OPTIONS env git"
 alias cfglazy="lazygit --work-tree $HOME --git-dir $HOME/.cfg"
@@ -48,7 +46,7 @@ alias cfgtig="$CFG_COMMAND_OPTIONS tig"
 alias h='history'
 alias l='less'
 alias la='lla'
-alias ll='eza -lh --icons=auto --git --group-directories-first --time-style=long-iso --git-repos'
+alias ll='eza -lh --icons=auto --git --group-directories-first --time-style=long-iso'
 alias lla='ll -a'
 alias tf='terraform'
 alias penv='printenv | sort'
@@ -111,8 +109,6 @@ else
 fi
 if command -v zoxide &>/dev/null; then
     eval "$(zoxide init --cmd cd zsh)"
-else
-    source $HOME/.zsh-prompt.zsh
 fi
 source ${HOME}/.zfunc/plugin_manager
 
