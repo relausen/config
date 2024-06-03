@@ -33,6 +33,21 @@ config.window_padding = {
   bottom = "0.5cell",
 }
 
+local function basename(s)
+  return string.gsub(s, '(.*[/\\])(.*)', '%2')
+end
+
+local function tab_title(tab_info)
+  local title = tab_info.tab_title
+  -- if the tab title is explicitly set, take that
+  if title and #title > 0 then
+    return title
+  end
+  -- Otherwise, use the title from the active pane
+  -- in that tab
+  return tab_info.active_pane.title
+end
+
 wezterm.on("gui-startup", function(cmd)
   local tab, pane, window = mux.spawn_window(cmd or {})
   window:gui_window():maximize()
@@ -43,15 +58,27 @@ wezterm.on(
   function(tab, tabs, panes, config, hover, max_width)
     local home_dir = os.getenv('HOME')
     local pane = tab.active_pane
-    local title = pane.current_working_dir.file_path:sub(1, -2):gsub(home_dir, '~')
-    -- title = title:gsub(home_dir, '~')
+
+    local title = tab_title(tab)
+
+    local current_dir = pane.current_working_dir.file_path:sub(1, -2):gsub(home_dir, '~')
     return {
       {
-        Text = ' ' .. title .. ' '
+        Text = current_dir .. ' - ' .. title .. ' '
       },
     }
   end
 )
 
+wezterm.on('update-right-status', function(window, pane)
+  local info = pane:get_foreground_process_info()
+  if info then
+    window:set_right_status(
+      table.concat(info.argv, ' ')
+    )
+  else
+    window:set_right_status ''
+  end
+end)
 
 return config
