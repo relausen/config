@@ -41,8 +41,10 @@ end)
 wezterm.on(
   'format-tab-title',
   function(tab, tabs, panes, config, hover, max_width)
+    local home_dir = os.getenv('HOME')
     local pane = tab.active_pane
-    local title = pane.current_working_dir.file_path:sub(1, -2)
+    local title = pane.current_working_dir.file_path:sub(1, -2):gsub(home_dir, '~')
+    -- title = title:gsub(home_dir, '~')
     return {
       {
         Text = ' ' .. title .. ' '
