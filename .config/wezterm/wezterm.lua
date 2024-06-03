@@ -33,9 +33,23 @@ config.window_padding = {
   bottom = "0.5cell",
 }
 
-wezterm.on("gui-startup", function()
-  local tab, pane, window = mux.spawn_window{}
+wezterm.on("gui-startup", function(cmd)
+  local tab, pane, window = mux.spawn_window(cmd or {})
   window:gui_window():maximize()
 end)
+
+wezterm.on(
+  'format-tab-title',
+  function(tab, tabs, panes, config, hover, max_width)
+    local pane = tab.active_pane
+    local title = pane.current_working_dir.file_path:sub(1, -2)
+    return {
+      {
+        Text = ' ' .. title .. ' '
+      },
+    }
+  end
+)
+
 
 return config
