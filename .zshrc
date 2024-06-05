@@ -44,7 +44,7 @@ alias cfg="$CFG_COMMAND_OPTIONS env git"
 alias cfglazy="lazygit --work-tree $HOME --git-dir $HOME/.cfg"
 alias cfgtig="$CFG_COMMAND_OPTIONS tig"
 alias h='history'
-alias l='less'
+alias l='bat'
 alias la='lla'
 alias ll='eza -lh --icons=auto --git --group-directories-first --time-style=long-iso'
 alias lla='ll -a'
