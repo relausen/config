@@ -20,6 +20,7 @@ return {
         mappings = {
           i = {
             ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+            ["<C-h>"] = "which_key",
           }
         }
       },
