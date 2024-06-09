@@ -16,11 +16,9 @@ return {
       opts.buffer = bufnr
 
       -- set keybinds
-      if vim.fn.has("nvim-0.10") == 1 and client.server_capabilities.inlayHintProvider then
+      if client.server_capabilities.inlayHintProvider then
         vim.notify("Inlay hints are supported")
         keymap.set("n", "<leader>ti", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, opts)
-        -- else
-        --     vim.notify("Inlay hints not supported")
       end
 
       opts.desc = "Show LSP references"
@@ -77,11 +75,6 @@ return {
     })
 
     lspconfig["pyright"].setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-    })
-
-    lspconfig["csharp_ls"].setup({
         capabilities = capabilities,
         on_attach = on_attach,
     })
