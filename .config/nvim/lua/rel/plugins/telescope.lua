@@ -1,10 +1,10 @@
 return {
-  'nvim-telescope/telescope.nvim',
+  "nvim-telescope/telescope.nvim",
   branch = "0.1.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-lua/popup.nvim",
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "nvim-telescope/telescope-dap.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
     "nvim-telescope/telescope-media-files.nvim",
@@ -21,21 +21,20 @@ return {
           i = {
             ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
             ["<C-h>"] = "which_key",
-          }
-        }
+          },
+        },
       },
       extensions = {
         media_files = {
-          filetypes = {"png", "jpg", "jpeg", "mp4", "webm", "pdf"},
-        }
+          filetypes = { "png", "jpg", "jpeg", "mp4", "webm", "pdf" },
+        },
       },
-
     })
 
     telescope.load_extension("fzf")
     telescope.load_extension("search_dir_picker")
     telescope.load_extension("file_browser")
     telescope.load_extension("dap")
-    telescope.load_extension('media_files')
-  end
+    telescope.load_extension("media_files")
+  end,
 }
