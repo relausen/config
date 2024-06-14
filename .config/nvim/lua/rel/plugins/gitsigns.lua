@@ -5,8 +5,8 @@ return {
     local gitsigns = require("gitsigns")
 
     gitsigns.setup({
-      word_diff = true,
-      current_line_blame = true,
+      word_diff = false,
+      current_line_blame = false,
       on_attach = function(bufnr)
         local opts = { noremap = true, silent = true }
         local keymap = vim.keymap
