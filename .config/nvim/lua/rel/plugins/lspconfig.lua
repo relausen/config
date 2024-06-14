@@ -3,7 +3,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
-    {"antosha417/nvim-lsp-file-operations", config = true },
+    { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function()
     local lspconfig = require("lspconfig")
@@ -18,7 +18,9 @@ return {
       -- set keybinds
       if client.server_capabilities.inlayHintProvider then
         vim.notify("Inlay hints are supported")
-        keymap.set("n", "<leader>ti", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, opts)
+        keymap.set("n", "<leader>ti", function()
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+        end, opts)
       end
 
       opts.desc = "Show LSP references"
@@ -74,14 +76,19 @@ return {
       on_attach = on_attach,
     })
 
+    lspconfig.marksman.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
     lspconfig["pyright"].setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
+      capabilities = capabilities,
+      on_attach = on_attach,
     })
 
     -- lspconfig.pylsp.setup({
-    --     capabilities = capabilities,
-    --     on_attach = on_attach,
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
     -- })
 
     -- lspconfig.ruff_lsp.setup({
@@ -124,6 +131,5 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
     })
-
   end,
 }
