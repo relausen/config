@@ -1,5 +1,5 @@
 local telescope = require("telescope")
-local builtin = require('telescope.builtin')
+local builtin = require("telescope.builtin")
 local search_dir_picker = require("search_dir_picker")
 local keymap = vim.keymap
 keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Fuzzy find buffers" })
@@ -17,6 +17,7 @@ keymap.set("n", "<leader>ft", builtin.treesitter, { desc = "Find from treesitter
 keymap.set("n", "<leader>fu", builtin.reloader, { desc = "Reload" })
 
 local extensions = telescope.extensions
+keymap.set("n", "<leader>fn", extensions.notify.notify, { desc = "Fuzzy find notification history" })
 keymap.set("n", "<leader>fdb", extensions.dap.list_breakpoints, { desc = "Fuzzy find breakpoints" })
 keymap.set("n", "<leader>fdc", extensions.dap.commands, { desc = "Fuzzy find DAP commands" })
 keymap.set("n", "<leader>fdv", extensions.dap.variables, { desc = "Fuzzy find DAP variables" })
