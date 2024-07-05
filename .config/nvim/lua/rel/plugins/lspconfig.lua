@@ -81,22 +81,40 @@ return {
       on_attach = on_attach,
     })
 
-    lspconfig["pyright"].setup({
+    lspconfig["basedpyright"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
       settings = {
-        pyright = {
+        basedpyright = {
           -- Using Ruff's import organizer
           disableOrganizeImports = true,
-        },
-        python = {
           analysis = {
-            -- Ignore all files for analysis to exclusively use Ruff for linting
-            ignore = { "*" },
+            diagnosticSeverityOverrides = {
+              reportAny = false,
+            },
+            --   -- Ignore all files for analysis to exclusively use Ruff for linting
+            --   ignore = { "*" },
           },
         },
       },
     })
+
+    -- lspconfig["pyright"].setup({
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    --   settings = {
+    --     pyright = {
+    --       -- Using Ruff's import organizer
+    --       disableOrganizeImports = true,
+    --     },
+    --     python = {
+    --       analysis = {
+    --         -- Ignore all files for analysis to exclusively use Ruff for linting
+    --         ignore = { "*" },
+    --       },
+    --     },
+    --   },
+    -- })
 
     -- lspconfig.pylsp.setup({
     --   capabilities = capabilities,
