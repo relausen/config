@@ -36,8 +36,12 @@ return {
 
     mason_tool_installer.setup({
       ensure_installed = {
+        "hadolint",
+        "jsonlint",
         "ruff",
         "stylua",
+        "tflint",
+        "vale",
       },
     })
   end,
