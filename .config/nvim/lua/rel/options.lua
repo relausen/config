@@ -5,7 +5,6 @@ local options = {
   cursorline = true,
   expandtab = true,
   fileencoding = "utf-8",
-  -- guifont = "SauceCodePro Nerd Font",
   hidden = true,
   hlsearch = true,
   ignorecase = true,
@@ -33,7 +32,7 @@ local options = {
   ttimeoutlen = 50,
   undodir = os.getenv("HOME") .. "/.vim/tmp/undo.nvim",
   undofile = true,
-  wildmode= { "longest", "list", "full" },
+  wildmode = { "longest", "list", "full" },
   wrap = false,
 }
 
