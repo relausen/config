@@ -1,4 +1,3 @@
-require("rel.lazy")
 require("rel.options")
 require("rel.keymaps")
 
