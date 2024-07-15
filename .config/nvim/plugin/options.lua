@@ -42,3 +42,4 @@ for k, v in pairs(options) do
 end
 
 vim.opt.iskeyword:append("-")
+vim.notify = require("notify")
