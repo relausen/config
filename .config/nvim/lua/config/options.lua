@@ -8,6 +8,7 @@ local options = {
   hidden = true,
   hlsearch = true,
   ignorecase = true,
+  inccommand = "split",
   incsearch = true,
   laststatus = 2,
   mouse = "",

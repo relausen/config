@@ -1,4 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-require("rel.lazy")
+require("config.lazy")
+require("config.options")
+require("config.keymaps")
+
+vim.notify = require("notify")

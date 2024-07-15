@@ -81,55 +81,73 @@ return {
       on_attach = on_attach,
     })
 
-    lspconfig["basedpyright"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = {
-        basedpyright = {
-          -- Using Ruff's import organizer
-          disableOrganizeImports = true,
-          analysis = {
-            diagnosticSeverityOverrides = {
-              reportAny = false,
-            },
-            --   -- Ignore all files for analysis to exclusively use Ruff for linting
-            --   ignore = { "*" },
-          },
-        },
-      },
-    })
-
-    -- lspconfig["pyright"].setup({
+    -- lspconfig["basedpyright"].setup({
     --   capabilities = capabilities,
     --   on_attach = on_attach,
     --   settings = {
-    --     pyright = {
+    --     basedpyright = {
     --       -- Using Ruff's import organizer
     --       disableOrganizeImports = true,
-    --     },
-    --     python = {
     --       analysis = {
-    --         -- Ignore all files for analysis to exclusively use Ruff for linting
-    --         ignore = { "*" },
+    --         diagnosticSeverityOverrides = {
+    --           reportAny = false,
+    --         },
+    --         --   -- Ignore all files for analysis to exclusively use Ruff for linting
+    --         --   ignore = { "*" },
     --       },
     --     },
     --   },
     -- })
 
-    -- lspconfig.pylsp.setup({
-    --   capabilities = capabilities,
-    --   on_attach = on_attach,
-    -- })
+    require("lspconfig").pylsp.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = {
+        pylsp = {
+          plugins = {
+            rope_rename = {
+              enabled = false,
+            },
+            jedi_rename = {
+              enabled = false,
+            },
+            pylsp_rope = {
+              enabled = true,
+            },
+            rope_autoimport = {
+              enabled = true,
+            },
+            ruff = {
+              enabled = true,
+            },
+            -- pycodestyle = {
+            --   ignore = { "W391" },
+            --   maxLineLength = 100,
+            -- },
+          },
+        },
+      },
+    })
 
     lspconfig.ruff.setup({
       capabilities = capabilities,
-      -- on_attach = on_attach,
-      on_attach = function(client, buffer)
-        on_attach(client, buffer)
-        -- Use PyRight's hover provider
-        client.server_capabilities.hoverProvider = false
-      end,
+      on_attach = on_attach,
+      -- on_attach = function(client, buffer)
+      --   on_attach(client, buffer)
+      --   -- Use PyRight's hover provider
+      --   client.server_capabilities.hoverProvider = false
+      -- end,
     })
+
+    -- lspconfig.ruff_lsp.setup({
+    --   capabilities = capabilities,
+    --   -- on_attach = on_attach,
+    --   on_attach = function(client, buffer)
+    --     on_attach(client, buffer)
+    --     -- Use PyRight's hover provider
+    --     client.server_capabilities.hoverProvider = false
+    --   end,
+    -- })
 
     lspconfig.terraformls.setup({
       capabilities = capabilities,

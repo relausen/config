@@ -5,12 +5,13 @@ return {
     "nvim-telescope/telescope.nvim",
     -- "mfussenegger/nvim-dap-python"
   },
-  event = "VeryLazy",
+  lazy = false,
+  branch = "regexp",
   opts = {
     parents = 1,
   },
   keys = {
     { "<leader>ves", "<cmd>VenvSelect<cr>" },
     { "<leader>vec", "<cmd>VenvSelectCached<cr>" },
-  }
+  },
 }
