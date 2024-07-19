@@ -122,7 +122,7 @@ local nav_keys = {
   {
     key = "Enter",
     mods = "SUPER",
-    action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+    action = act.SplitHorizontal({ domain = "CurrentPaneDomain", cwd = "~" }),
   },
   {
     key = ",",
