@@ -1,4 +1,4 @@
-local user_var_format = "\027]1337;SetUserVar=IS_NVIM=%s\007"
+local user_var_format = "\027]1337;SetUserVar=IS_NVIM=%s\b"
 
 local function formatted_user_var(value)
   local b64_encoded_value = value and vim.base64.encode(value) or ""
@@ -22,3 +22,7 @@ vim.api.nvim_create_autocmd({ "VimSuspend", "VimLeavePre" }, {
     set_user_var(nil)
   end,
 })
+
+vim.api.nvim_create_user_command("ResetWezTermUserVar", function()
+  set_user_var("true")
+end, {})
