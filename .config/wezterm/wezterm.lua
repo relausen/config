@@ -11,6 +11,7 @@ config.audible_bell = "Disabled"
 config.color_scheme = "Tokyo Night"
 config.cursor_thickness = 2
 config.default_cursor_style = "SteadyBar"
+-- config.default_gui_startup_args = { "connect", "unix" }
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Medium" })
 config.font_size = font_size
 config.hyperlink_rules = hyperlinks.hyperlink_rules
@@ -22,6 +23,11 @@ config.keys = key_bindings.keys
 config.key_tables = key_bindings.key_tables
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.tab_bar_at_bottom = false
+config.unix_domains = {
+  {
+    name = "unix",
+  },
+}
 config.window_decorations = "RESIZE"
 config.window_frame = {
   font_size = font_size,
@@ -59,7 +65,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 
   local title = tab_title(tab)
 
-  local current_dir = pane.current_working_dir.file_path:sub(1, -2):gsub(home_dir, "~")
+  local current_working_dir = pane.current_working_dir or wezterm.url.parse("file://" .. home_dir)
+  local current_dir = current_working_dir.file_path:sub(1, -2):gsub(home_dir, "~")
   return {
     {
       Text = current_dir .. " - " .. title .. " ",
@@ -68,6 +75,9 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 wezterm.on("update-right-status", function(window, pane)
+  if not pane then
+    return
+  end
   local info = pane:get_foreground_process_info()
   if info then
     window:set_right_status(table.concat(info.argv, " "))
