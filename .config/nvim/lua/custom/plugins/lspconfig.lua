@@ -3,6 +3,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
+    "folke/lazydev.nvim",
     { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function()
@@ -99,29 +100,47 @@ return {
       },
     })
 
-    -- lspconfig["pyright"].setup({
+    -- require("lspconfig").pylsp.setup({
     --   capabilities = capabilities,
     --   on_attach = on_attach,
     --   settings = {
-    --     pyright = {
-    --       -- Using Ruff's import organizer
-    --       disableOrganizeImports = true,
-    --     },
-    --     python = {
-    --       analysis = {
-    --         -- Ignore all files for analysis to exclusively use Ruff for linting
-    --         ignore = { "*" },
+    --     pylsp = {
+    --       plugins = {
+    --         rope_rename = {
+    --           enabled = false,
+    --         },
+    --         jedi_rename = {
+    --           enabled = false,
+    --         },
+    --         pylsp_rope = {
+    --           enabled = true,
+    --         },
+    --         rope_autoimport = {
+    --           enabled = true,
+    --         },
+    --         ruff = {
+    --           enabled = true,
+    --         },
+    --         -- pycodestyle = {
+    --         --   ignore = { "W391" },
+    --         --   maxLineLength = 100,
+    --         -- },
     --       },
     --     },
     --   },
     -- })
 
-    -- lspconfig.pylsp.setup({
+    -- lspconfig.ruff.setup({
     --   capabilities = capabilities,
-    --   on_attach = on_attach,
+    -- on_attach = on_attach,
+    -- on_attach = function(client, buffer)
+    --   on_attach(client, buffer)
+    --   -- Use PyRight's hover provider
+    --   client.server_capabilities.hoverProvider = false
+    -- end,
     -- })
 
-    lspconfig.ruff.setup({
+    lspconfig.ruff_lsp.setup({
       capabilities = capabilities,
       -- on_attach = on_attach,
       on_attach = function(client, buffer)
@@ -139,23 +158,28 @@ return {
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      settings = { -- custom settings for lua
-        Lua = {
+      on_init = function(client)
+        client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+          runtime = {
+            version = "LuaJIT",
+          },
           hint = {
             enable = true,
           },
-          -- make the language server recognize "vim" global
-          diagnostics = {
-            globals = { "vim" },
-          },
           workspace = {
-            -- make language server aware of runtime files
+            checkThirdParty = false,
             library = {
-              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-              [vim.fn.stdpath("config") .. "/lua"] = true,
+              vim.env.VIMRUNTIME,
+              vim.env.VIMRUNTIME .. "/lua",
+              vim.fn.stdpath("config") .. "/lua",
+              "${3rd}/luv/library",
+              -- "${3rd}/busted/library",
             },
           },
-        },
+        })
+      end,
+      settings = {
+        Lua = {},
       },
     })
 

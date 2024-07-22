@@ -7,7 +7,7 @@ return {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lua",
     "hrsh7th/cmp-nvim-lsp",
-    {"L3MON4D3/LuaSnip", build = "make install_jsregexp"},
+    { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
     "saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
     "PhilRunninger/cmp-rpncalc",
@@ -16,12 +16,12 @@ return {
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
-    local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     local lspkind = require("lspkind")
 
     require("luasnip.loaders.from_vscode").lazy_load()
 
-    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
     cmp.setup({
       completion = {
@@ -43,42 +43,43 @@ return {
           else
             fallback()
           end
-        end, {"i", "s"}),
+        end, { "i", "s" }),
         ["<C-k>"] = cmp.mapping(function(fallback)
           if luasnip.jumpable(-1) then
             luasnip.jump(-1)
           else
             fallback()
           end
-        end, {"i", "s"}),
+        end, { "i", "s" }),
         ["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
         ["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-e>"] = cmp.mapping.abort(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       }),
       formatting = {
         format = lspkind.cmp_format({
           mode = "symbol_text",
-          menu = ({
+          menu = {
             buffer = "[Buffer] ",
             nvim_lsp = "[LSP] ",
             luasnip = "[LuaSnip] ",
             nvim_lua = "[Lua] ",
             path = "[path] ",
-          }),
+          },
         }),
       },
       sources = cmp.config.sources({
+        { name = "buffer" },
+        { name = "lazydev", group_index = 0 },
+        { name = "luasnip" },
         { name = "nvim_lsp" },
-        { name = 'luasnip' },
-        { name = 'nvim_lua' },
-        { name = 'buffer' },
-        { name = 'path' },
-        { name = 'rpncalc' },
+        { name = "nvim_lua" },
+        { name = "path" },
+        { name = "rpncalc" },
       }),
     })
-  end
+  end,
 }

@@ -21,12 +21,13 @@ return {
 
     mason_lspconfig.setup({
       ensure_installed = {
+        "basedpyright",
         "bashls",
         "lua_ls",
         "marksman",
-        "basedpyright",
         -- "pyright",
-        "ruff",
+        "pylsp",
+        "ruff_lsp",
         "rust_analyzer",
         "terraformls",
         "yamlls",

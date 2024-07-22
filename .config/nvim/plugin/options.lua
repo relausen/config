@@ -8,6 +8,7 @@ local options = {
   hidden = true,
   hlsearch = true,
   ignorecase = true,
+  inccommand = "split",
   incsearch = true,
   laststatus = 2,
   mouse = "",
@@ -41,3 +42,4 @@ for k, v in pairs(options) do
 end
 
 vim.opt.iskeyword:append("-")
+vim.notify = require("notify")
