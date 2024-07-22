@@ -43,6 +43,7 @@ alias cat='bat'
 alias cfg="$CFG_COMMAND_OPTIONS env git"
 alias cfglazy="lazygit --work-tree $HOME --git-dir $HOME/.cfg"
 alias cfgtig="$CFG_COMMAND_OPTIONS tig"
+alias fzfp="fzf --preview 'bat --color=always {}' --preview-window '~3'"
 alias h='history'
 alias l='bat'
 alias la='lla'
