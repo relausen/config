@@ -140,10 +140,5 @@ source <(fzf --zsh)
 if [[ ${SHLVL} -eq 1 ]]; then
     if command -v fastfetch &>/dev/null; then
         fastfetch
-        # local backend=ascii
-        # if [[ ${TERM} == xterm-kitty ]]; then
-        #     backend=kitty
-        # fi
-        # neofetch --backend ${backend} --size "590px"
     fi
 fi
