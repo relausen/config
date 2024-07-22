@@ -6,8 +6,9 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 autoload -Uz compinit
 
-setopt HIST_IGNORE_ALL_DUPS
-setopt PROMPT_SUBST
+setopt hist_ignore_all_dups
+setopt prompt_subst
+setopt sharehistory
 
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
