@@ -1,4 +1,4 @@
-local font_size <const> = 13
+local font_size = 13
 
 local wezterm = require("wezterm")
 local key_bindings = require("key-bindings")
