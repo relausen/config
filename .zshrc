@@ -134,7 +134,8 @@ if command -v op &>/dev/null; then
     eval "$(op completion zsh)" && compdef _op op
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 if [[ ${SHLVL} -eq 1 ]]; then
     if command -v fastfetch &>/dev/null; then
