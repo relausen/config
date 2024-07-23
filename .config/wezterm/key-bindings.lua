@@ -110,6 +110,11 @@ local nav_keys = {
     action = act.SplitHorizontal({ domain = "CurrentPaneDomain", cwd = "~" }),
   },
   {
+    key = "Enter",
+    mods = "SUPER|SHIFT",
+    action = act.SplitPane({ direction = "Right", size = { Percent = 33 } }),
+  },
+  {
     key = ",",
     mods = "LEADER",
     action = act.PromptInputLine({
