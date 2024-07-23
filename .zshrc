@@ -6,8 +6,9 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 autoload -Uz compinit
 
-setopt HIST_IGNORE_ALL_DUPS
-setopt PROMPT_SUBST
+setopt hist_ignore_all_dups
+setopt prompt_subst
+setopt sharehistory
 
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
@@ -43,6 +44,7 @@ alias cat='bat'
 alias cfg="$CFG_COMMAND_OPTIONS env git"
 alias cfglazy="lazygit --work-tree $HOME --git-dir $HOME/.cfg"
 alias cfgtig="$CFG_COMMAND_OPTIONS tig"
+alias fzfp="fzf --preview 'bat --color=always {}' --preview-window '~3'"
 alias h='history'
 alias l='bat'
 alias la='lla'
@@ -129,21 +131,16 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 
 eval $(thefuck --alias)
-# eval "$(pyenv init -)"
 eval "$(mise activate zsh)"
 if command -v op &>/dev/null; then
     eval "$(op completion zsh)" && compdef _op op
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 if [[ ${SHLVL} -eq 1 ]]; then
     if command -v fastfetch &>/dev/null; then
         fastfetch
-        # local backend=ascii
-        # if [[ ${TERM} == xterm-kitty ]]; then
-        #     backend=kitty
-        # fi
-        # neofetch --backend ${backend} --size "590px"
     fi
 fi
