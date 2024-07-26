@@ -82,12 +82,20 @@ local nav_keys = {
   {
     key = "s",
     mods = "LEADER",
-    action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
+    action = act.ShowLauncherArgs({ flags = "WORKSPACES|TABS" }),
   },
   {
     key = "t",
     mods = "LEADER",
     action = act.ShowTabNavigator,
+  },
+  {
+    key = "u",
+    mods = "SHIFT|CTRL",
+    action = wezterm.action.CharSelect({
+      copy_on_select = true,
+      copy_to = "ClipboardAndPrimarySelection",
+    }),
   },
   {
     key = "|",
@@ -142,6 +150,20 @@ local nav_keys = {
         end
       end),
     }),
+  },
+  -- Rebind OPT-Left, OPT-Right as ALT-b, ALT-f respectively to match Terminal.app behavior
+  {
+    key = "LeftArrow",
+    mods = "OPT",
+    action = act.SendKey({
+      key = "b",
+      mods = "ALT",
+    }),
+  },
+  {
+    key = "RightArrow",
+    mods = "OPT",
+    action = act.SendKey({ key = "f", mods = "ALT" }),
   },
 }
 
