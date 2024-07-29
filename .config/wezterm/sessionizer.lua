@@ -87,16 +87,3 @@ M.start = function(window, pane)
 end
 
 return M
-
--- /Users/rune/development/worktree-experiments/.bare         (bare)
--- /Users/rune/development/worktree-experiments/feat/branch1  24bb128 [feat/branch1]
--- /Users/rune/development/worktree-experiments/feat/branch2  24bb128 [feat/branch2]
--- /Users/rune/development/worktree-experiments/fix/fix1      24bb128 [fix1]
--- /Users/rune/development/worktree-experiments/fix/fix2      24bb128 [fix/fix2]
--- /Users/rune/development/worktree-experiments/main          24bb128 [main]
-
--- worktree-experiments/feat/branch1
--- 12:05:44.518 INFO logging > lua: worktree-experiments/feat/branch2
--- 12:05:44.518 INFO logging > lua: worktree-experiments/fix/fix1
--- 12:05:44.518 INFO logging > lua: worktree-experiments/fix/fix2
--- 12:05:44.518 INFO logging > lua: worktree-experiments/main
