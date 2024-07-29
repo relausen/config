@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local session = require("sessionizer")
 local act = wezterm.action
 local mux = wezterm.mux
 
@@ -137,7 +138,7 @@ local nav_keys = {
   {
     key = "w",
     mods = "LEADER",
-    action = act.ShowTabNavigator,
+    action = wezterm.action_callback(session.start),
   },
   {
     key = "$",
