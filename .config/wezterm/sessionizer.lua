@@ -18,6 +18,10 @@ local search_folders = {
   config_path,
 }
 
+local function normalized_path(path)
+  return path:gsub(home, "~")
+end
+
 local function run_fd(extra_params)
   local default_params = { "--hidden", "--no-ignore", "--type=d", "--max-depth=1", "--prune", "." }
   local params = utils.merge_tables(default_params, extra_params)
@@ -36,7 +40,7 @@ local function add_git_worktrees(projects, bare_repo)
   for wt_line in worktrees:gmatch("([^\n]*)\n?") do
     if not wt_line:find(".bare") then
       local wt_project = wt_line:match("(%g-)%s+.*")
-      local wt_label = wt_project:gsub(home, "~")
+      local wt_label = normalized_path(wt_project)
       local proj, wt = wt_project:match(home .. "/%g-/(.-)/(.*)")
       local wt_id = proj .. " - " .. wt
       table.insert(projects, { label = wt_label, id = wt_id })
@@ -55,9 +59,15 @@ M.start = function(window, pane)
     return
   end
 
+  for _, dir in ipairs(search_folders) do
+    local label = normalized_path(dir)
+    local id = normalized_path(dir):gsub("~/", "")
+    table.insert(projects, { label = label, id = id })
+  end
+
   for line in stdout:gmatch("([^\n]*)\n?") do
     local project = line
-    local label = project:gsub(home, "~")
+    local label = normalized_path(project)
     local id = project:match(".*/(.+)/")
     table.insert(projects, { label = tostring(label), id = tostring(id) })
     if utils.isdir(project .. ".bare") then
@@ -67,6 +77,10 @@ M.start = function(window, pane)
       end
     end
   end
+
+  table.sort(projects, function(lhs, rhs)
+    return lhs.label < rhs.label
+  end)
 
   window:perform_action(
     act.InputSelector({
