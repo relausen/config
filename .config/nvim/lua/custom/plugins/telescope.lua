@@ -31,6 +31,10 @@ return {
         media_files = {
           filetypes = { "png", "jpg", "jpeg", "mp4", "webm", "pdf" },
         },
+        file_browser = {
+          -- disables netrw and use telescope-file-browser in its place
+          hijack_netrw = true,
+        },
       },
     })
 
@@ -44,6 +48,12 @@ return {
     keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Fuzzy find buffers" })
     keymap.set("n", "<leader>fc", builtin.grep_string, { desc = "Find string under cursor in cwd" })
     keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Fuzzy find files in cwd" })
+    keymap.set(
+      "n",
+      "<leader>ffb",
+      "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>",
+      { desc = "Fuzzy file browser" }
+    )
     keymap.set("n", "<leader>fgb", builtin.git_branches, { desc = "Fuzzy find git branches" })
     keymap.set("n", "<leader>fgc", builtin.git_commits, { desc = "Fuzzy find git commits" })
     keymap.set("n", "<leader>fgs", builtin.git_status, { desc = "Fuzzy find git status" })

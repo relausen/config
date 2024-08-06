@@ -7,6 +7,7 @@ return {
     local nvimtree = require("nvim-tree")
 
     nvimtree.setup({
+      hijack_netrw = false,
       renderer = {
         indent_markers = {
           enable = true,
