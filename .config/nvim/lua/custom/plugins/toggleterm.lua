@@ -7,11 +7,11 @@ function M.config()
   -- Heavily influenced by chris@machine's setup.
   -- See https://github.com/ChristianChiarulli/nvim/blob/master/lua/user/toggleterm.lua
   local execs = {
-    { nil, "<leader>th", "Horizontal Terminal", "horizontal", 0.3 },
-    { nil, "<leader>tv", "Vertical Terminal", "vertical", 0.4 },
-    { nil, "<leader>tf", "Float Terminal", "float", nil },
-    { "python", "<leader>tp", "Float Python Terminal", "float", nil },
-    { "lazygit", "<leader>tg", "Float Git Terminal", "float", nil },
+    { nil, "<localleader>th", "Horizontal Terminal", "horizontal", 0.3 },
+    { nil, "<llocaleader>tv", "Vertical Terminal", "vertical", 0.4 },
+    { nil, "<localleader>tf", "Float Terminal", "float", nil },
+    { "python", "<localleader>tp", "Float Python Terminal", "float", nil },
+    { "lazygit", "<localleader>tg", "Float Git Terminal", "float", nil },
   }
 
   local function get_buf_size()
@@ -39,19 +39,19 @@ function M.config()
 
   local exec_toggle = function(opts)
     local Terminal = require("toggleterm.terminal").Terminal
-    local term = Terminal:new { cmd = opts.cmd, count = opts.count, direction = opts.direction }
+    local term = Terminal:new({ cmd = opts.cmd, count = opts.count, direction = opts.direction })
     term:toggle(opts.size, opts.direction)
   end
 
   local add_exec = function(opts)
-    local binary = opts.cmd:match "(%S+)"
+    local binary = opts.cmd:match("(%S+)")
     if vim.fn.executable(binary) ~= 1 then
       vim.notify("Skipping configuring executable " .. binary .. ". Please make sure it is installed properly.")
       return
     end
 
     vim.keymap.set({ "n", "t" }, opts.keymap, function()
-      exec_toggle { cmd = opts.cmd, count = opts.count, direction = opts.direction, size = opts.size() }
+      exec_toggle({ cmd = opts.cmd, count = opts.count, direction = opts.direction, size = opts.size() })
     end, { desc = opts.label, noremap = true, silent = true })
   end
 

@@ -43,3 +43,9 @@ end
 
 vim.opt.iskeyword:append("-")
 vim.notify = require("notify")
+
+vim.filetype.add({
+  extension = {
+    tf = "terraform",
+  },
+})
