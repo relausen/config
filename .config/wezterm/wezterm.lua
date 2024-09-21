@@ -22,7 +22,7 @@ config.inactive_pane_hsb = {
 config.keys = key_bindings.keys
 config.key_tables = key_bindings.key_tables
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
-config.tab_bar_at_bottom = false
+config.tab_bar_at_bottom = true
 config.unix_domains = {
   {
     name = "unix",
