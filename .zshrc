@@ -54,6 +54,7 @@ alias tf='terraform'
 alias penv='printenv | sort'
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
 alias tigcfg="$CFG_COMMAND_OPTIONS tig"
+alias vim='nvim'
 
 function aws-profile {
     export AWS_PROFILE=$1
