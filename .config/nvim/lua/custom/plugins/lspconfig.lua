@@ -100,49 +100,8 @@ return {
       },
     })
 
-    -- require("lspconfig").pylsp.setup({
-    --   capabilities = capabilities,
-    --   on_attach = on_attach,
-    --   settings = {
-    --     pylsp = {
-    --       plugins = {
-    --         rope_rename = {
-    --           enabled = false,
-    --         },
-    --         jedi_rename = {
-    --           enabled = false,
-    --         },
-    --         pylsp_rope = {
-    --           enabled = true,
-    --         },
-    --         rope_autoimport = {
-    --           enabled = true,
-    --         },
-    --         ruff = {
-    --           enabled = true,
-    --         },
-    --         -- pycodestyle = {
-    --         --   ignore = { "W391" },
-    --         --   maxLineLength = 100,
-    --         -- },
-    --       },
-    --     },
-    --   },
-    -- })
-
-    -- lspconfig.ruff.setup({
-    --   capabilities = capabilities,
-    -- on_attach = on_attach,
-    -- on_attach = function(client, buffer)
-    --   on_attach(client, buffer)
-    --   -- Use PyRight's hover provider
-    --   client.server_capabilities.hoverProvider = false
-    -- end,
-    -- })
-
-    lspconfig.ruff_lsp.setup({
+    lspconfig.ruff.setup({
       capabilities = capabilities,
-      -- on_attach = on_attach,
       on_attach = function(client, buffer)
         on_attach(client, buffer)
         -- Use PyRight's hover provider
