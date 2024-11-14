@@ -146,23 +146,23 @@
             "key": "├─󰝚",
             "keyColor": "blue"
         },
-        {
-            "type": "localip",
-            "key": "├─󰩟",
-            "compact": true,
-            "keyColor": "blue"
-        },
-        {
-            "type": "publicip",
-            "key": "├─󰩠",
-            "keyColor": "blue"
-        },
-        {
-            "type": "wifi",
-            "key": "├─",
-            "format": "{4}", // ssid
-            "keyColor": "blue"
-        },
+        // {
+        //     "type": "localip",
+        //     "key": "├─󰩟",
+        //     "compact": true,
+        //     "keyColor": "blue"
+        // },
+        // {
+        //     "type": "publicip",
+        //     "key": "├─󰩠",
+        //     "keyColor": "blue"
+        // },
+        // {
+        //     "type": "wifi",
+        //     "key": "├─",
+        //     "format": "{4}", // ssid
+        //     "keyColor": "blue"
+        // },
         {
             "type": "locale",
             "key": "╰─",
