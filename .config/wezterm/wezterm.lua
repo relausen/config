@@ -22,6 +22,7 @@ config.inactive_pane_hsb = {
 config.keys = key_bindings.keys
 config.key_tables = key_bindings.key_tables
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+config.max_fps = 120
 config.tab_bar_at_bottom = true
 config.unix_domains = {
   {
