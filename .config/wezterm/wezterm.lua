@@ -40,10 +40,6 @@ config.window_padding = {
   bottom = "0.5cell",
 }
 
-local function basename(s)
-  return string.gsub(s, "(.*[/\\])(.*)", "%2")
-end
-
 local function tab_title(tab_info)
   local title = tab_info.tab_title
   -- if the tab title is explicitly set, take that
