@@ -12,7 +12,7 @@ config.color_scheme = "Tokyo Night"
 config.cursor_thickness = 2
 config.default_cursor_style = "SteadyBar"
 config.default_gui_startup_args = { "connect", "unix" }
-config.font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Medium" })
+-- config.font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Medium" })
 config.font_size = font_size
 config.hyperlink_rules = hyperlinks.hyperlink_rules
 config.inactive_pane_hsb = {
