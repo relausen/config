@@ -72,6 +72,11 @@ local nav_keys = {
   },
   {
     key = "l",
+    mods = "LEADER",
+    action = wezterm.action.EmitEvent("toggle-ligature"),
+  },
+  {
+    key = "l",
     mods = "LEADER|CTRL",
     action = act.SendKey({ key = "l", mods = "CTRL" }),
   },
