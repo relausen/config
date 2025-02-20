@@ -50,7 +50,9 @@ alias l='bat'
 alias la='lla'
 alias ll='eza -lh --icons=auto --git --group-directories-first --time-style=long-iso'
 alias lla='ll -a'
+alias lg='lazygit'
 alias tf='terraform'
+alias pd='pushd'
 alias penv='printenv | sort'
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
 alias tigcfg="$CFG_COMMAND_OPTIONS tig"
@@ -140,11 +142,11 @@ fi
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-if [[ ${SHLVL} -eq 1 ]]; then
-    if command -v fastfetch &>/dev/null; then
-        fastfetch
-    fi
-fi
+# if [[ ${SHLVL} -eq 1 ]]; then
+#     if command -v fastfetch &>/dev/null; then
+#         fastfetch
+#     fi
+# fi
 
 if command -v direnv &>/dev/null; then
     eval "$(direnv hook zsh)"
