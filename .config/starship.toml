@@ -40,6 +40,9 @@ style = 'bold red'
 threshold = 40
 style = 'bold yellow'
 
+[fill]
+symbol = '—'
+
 [nix_shell]
 heuristic = true
 symbol = "❄️ "
