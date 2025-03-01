@@ -7,6 +7,8 @@ local hyperlinks = require("hyperlinks")
 local mux = wezterm.mux
 local config = wezterm.config_builder()
 
+config.term = "wezterm"
+
 config.audible_bell = "Disabled"
 config.color_scheme = "Tokyo Night"
 config.cursor_thickness = 2
