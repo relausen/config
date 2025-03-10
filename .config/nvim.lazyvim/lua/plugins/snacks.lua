@@ -8,6 +8,9 @@ return -- lazy.nvim
         files = {
           hidden = true,
         },
+        projects = {
+          dev = { "~/development" },
+        },
       },
     },
     image = {
