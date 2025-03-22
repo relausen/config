@@ -7,8 +7,9 @@ export XDG_CONFIG_HOME="$HOME"/.config
 mv $HOME/.config $HOME/.config.old
 ln -sf $HOME/dotfiles/.cargo $HOME/.cargo
 ln -sf $HOME/dotfiles/.config $HOME/.config
+ln -sf $HOME/dotfiles/.gitconfig $HOME/.gitconfig
 ln -sf $HOME/dotfiles/.terminfo $HOME/.terminfo
-ln -sf $HOME/dotfiles/.zshrc $HOME/.zshrc
 ln -sf $HOME/dotfiles/.zfunc $HOME/.zfunc
 ln -sf $HOME/dotfiles/.zprofile $HOME/.zprofile
 ln -sf $HOME/dotfiles/.zshenv $HOME/.zshenshenv
+ln -sf $HOME/dotfiles/.zshrc $HOME/.zshrc
