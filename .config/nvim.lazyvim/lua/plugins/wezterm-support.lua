@@ -1,6 +1,6 @@
 return {
   "relausen/wezterm-support.nvim",
-  dev = true,
+  dev = false,
   lazy = false,
   opts = {},
   keys = {
