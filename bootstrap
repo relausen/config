@@ -4,7 +4,7 @@
 
 export XDG_CONFIG_HOME="$HOME"/.config
 
-mv .config .config.old
+mv $HOME/.config $HOME/.config.old
 ln -sf $HOME/dotfiles/.cargo $HOME/.cargo
 ln -sf $HOME/dotfiles/.config $HOME/.config
 ln -sf $HOME/dotfiles/.terminfo $HOME/.terminfo
