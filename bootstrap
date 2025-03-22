@@ -4,10 +4,10 @@
 
 export XDG_CONFIG_HOME="$HOME"/.config
 
-ln -sf $HOME/dotfiles/.cargo .cargo
-ln -sf $HOME/dotfiles/.config .config
-ln -sf $HOME/dotfiles/.terminfo .terminfo
-ln -sf $HOME/dotfiles/.zshrc .zshrc
-ln -sf $HOME/dotfiles/.zfunc .zfunc
-ln -sf $HOME/dotfiles/.zprofile .zprofile
-ln -sf $HOME/dotfiles/.zshenv .zshenshenv
+ln -sf $HOME/dotfiles/.cargo $HOME/.cargo
+ln -sf $HOME/dotfiles/.config $HOME/.config
+ln -sf $HOME/dotfiles/.terminfo $HOME/.terminfo
+ln -sf $HOME/dotfiles/.zshrc $HOME/.zshrc
+ln -sf $HOME/dotfiles/.zfunc $HOME/.zfunc
+ln -sf $HOME/dotfiles/.zprofile $HOME/.zprofile
+ln -sf $HOME/dotfiles/.zshenv $HOME/.zshenshenv
