@@ -1,4 +1,6 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ -f /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 if command -v mise &> /dev/null; then
     if POETRY_BIN_PATH="$(mise where poetry)/bin" &>/dev/null; then
         export PATH="${POETRY_BIN_PATH}:${PATH}"
