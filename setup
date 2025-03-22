@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+# Setup script for devpod
+
+export XDG_CONFIG_HOME="$HOME"/.config
+
+ln -s $HOME/dotfiles/.cargo .cargo
+ln -s $HOME/dotfiles/.zfunc .zunc
