@@ -135,8 +135,13 @@ source ${HOME}/.zfunc/wezterm-shell-integration
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 
-eval $(thefuck --alias)
-eval "$(mise activate zsh)"
+if command -v thefuck &>/dev/null; then
+  eval $(thefuck --alias)
+fi
+
+if command -v mise &>/dev/null; then
+  eval "$(mise activate zsh)"
+fi
 if command -v op &>/dev/null; then
     eval "$(op completion zsh)" && compdef _op op
 fi
