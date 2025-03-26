@@ -13,6 +13,7 @@ return {
         always_show = {
           ".github",
           ".gitignore",
+          ".devcontainer",
         },
       },
     },
