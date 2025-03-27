@@ -88,7 +88,7 @@ local nav_keys = {
   {
     key = "s",
     mods = "LEADER",
-    action = act.ShowLauncherArgs({ flags = "WORKSPACES|TABS" }),
+    action = act.ShowLauncherArgs({ flags = "WORKSPACES|TABS|FUZZY" }),
   },
   {
     key = "t",
@@ -106,7 +106,7 @@ local nav_keys = {
   {
     key = "|",
     mods = "LEADER",
-    action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+    action = act.SplitHorizontal({ domain = "CurrentPaneDomain", cwd = "~" }),
   },
   {
     key = "-",
@@ -121,7 +121,7 @@ local nav_keys = {
   {
     key = "Enter",
     mods = "SUPER",
-    action = act.SplitHorizontal({ domain = "CurrentPaneDomain", cwd = "~" }),
+    action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
   },
   {
     key = "Enter",
