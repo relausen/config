@@ -13,3 +13,9 @@ vim.opt.iskeyword:append("-")
 -- vim.opt.langmap = "æøå;[]\\\\"
 vim.opt.laststatus = 2
 vim.opt.mouse = ""
+
+vim.filetype.add({
+  filename = {
+    ["devcontainer.json"] = "jsonc",
+  },
+})
