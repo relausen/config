@@ -23,6 +23,6 @@ map.set("n", "<leader>Y", '"+Y', { desc = "Copy to system clipboard" })
 
 -- Floating terminal
 map.set("n", [[<C-\>]], function()
-  Snacks.terminal(nil, { win = { style = "float", border = "rounded" } })
+  Snacks.terminal()
 end, { desc = "Floating terminal" })
 map.set("t", [[<C-\>]], "<cmd>close<cr>", { desc = "Hide Terminal" })
