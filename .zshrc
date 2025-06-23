@@ -118,7 +118,7 @@ then
 fi
 fpath+=~/.awsume/zsh-autocomplete
 fpath+=${HOME}/.zfunc
-autoload -Uz compinit
+
 compinit
 
 if command -v starship &>/dev/null; then
@@ -158,3 +158,15 @@ source <(fzf --zsh)
 if command -v direnv &>/dev/null; then
     eval "$(direnv hook zsh)"
 fi
+
+_fzf_complete_aws-credentials-cli() {
+  _fzf_complete --multi --reverse --prompt="Profile Name" -- "$@" < <(
+    grep -E '^[[]profile .+' ~/.aws/config | sed -e 's/[[]//g' -e 's/]//' | cut -d ' ' -f 2
+  )
+}
+
+_fzf_complete_aws-profile() {
+  _fzf_complete --multi --reverse --prompt="Profile Name" -- "$@" < <(
+    grep -E '^[[]profile .+' ~/.aws/config | sed -e 's/[[]//g' -e 's/]//' | cut -d ' ' -f 2
+  )
+}
