@@ -41,9 +41,13 @@ bindkey '^ ' autosuggest-accept
 bindkey '^J' autosuggest-execute
 
 alias cat='bat'
+alias cb='cargo build'
+alias ccl='cargo clippy'
 alias cfg="$CFG_COMMAND_OPTIONS env git"
 alias cfglazy="lazygit --work-tree $HOME --git-dir $HOME/.cfg"
 alias cfgtig="$CFG_COMMAND_OPTIONS tig"
+alias cr='cargo run --'
+alias ct='cargo test'
 alias fzfp="fzf --preview 'bat --color=always {}' --preview-window '~3'"
 alias h='history'
 alias l='bat'
@@ -157,6 +161,10 @@ source <(fzf --zsh)
 
 if command -v direnv &>/dev/null; then
     eval "$(direnv hook zsh)"
+fi
+
+if [ -d "/opt/homebrew/opt/dotnet@8/bin" ]; then
+  export PATH="$PATH:/opt/homebrew/opt/dotnet@8/bin"
 fi
 
 _fzf_complete_aws-credentials-cli() {
