@@ -1,0 +1,18 @@
+lastupdatecheck: 0
+recentrepos:
+    - /Users/rune
+    - /Users/rune/development/tesla_auth
+    - /Users/rune/.local/share/chezmoi
+    - /Users/rune/development/neovim
+    - /Users/rune/development/wezterm-move.nvim
+    - /Users/rune/development/neovim-plugins/wezterm-support.nvim
+    - /Users/rune/development/nordpool-spotprices
+    - /Users/rune/development/octo.nvim/fix/564_better_missing_scope_handling
+    - /Users/rune/development/worktree-experiments/main
+    - /Users/rune/development/wezterm
+    - /Users/rune/development/rust_tutorials/fibonacci
+startuppopupversion: 5
+didshowhunkstaginghint: false
+lastversion: 0.60.0
+customcommandshistory: []
+hidecommandlog: false

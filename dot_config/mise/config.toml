@@ -1,0 +1,7 @@
+[tools]
+poetry = "1.8"
+python = "3.12"
+terraform = "1.4"
+
+[settings]
+idiomatic_version_file_enable_tools = ["python"]
